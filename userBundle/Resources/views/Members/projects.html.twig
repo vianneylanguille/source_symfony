@@ -1,0 +1,99 @@
+{% extends "ecloreuserBundle::page_lambda.html.twig" %}
+
+{% block title %}Espace membre{% endblock %}
+
+{%set color='vert'%}
+{%set first='Mon Éclore'%}
+{%set second='Espace personnel'%}
+
+{% block content %}
+{%include "ecloreuserBundle::menu_user.html.twig"%}
+<div class="coldroite">
+
+<h1> Mes projets </h1>
+
+<br>
+{% set pending = app.user.PAByStatus('PENDING') %}
+{% set validated = app.user.PAByStatus('VALIDATED') %}
+{% set rejected = app.user.PAByStatus('REJECTED') %}
+{% set terminated = app.user.PAByStatus('TERMINATED') %}
+{% set marked = app.user.PAByStatus('MARKED') %}
+
+
+{%if pending|length == 0 and validated|length == 0%}
+Vous n'avez pas encore candidaté à un projet. Vous pouvez chercher dans <a href="{{ path('ecloreuser_rechercherProjet') }}"> notre base de donnée </a> 
+un projet associatif qui vous convienne.
+{%endif%}
+
+
+{%if pending|length > 0%}
+<div class="colquarter">
+<h3> Candidatures en attente de réponse :</h3>
+    <ul>
+    {% for pa in pending %}
+        <li><a href="{{ path('manage_PA', { 'id': pa.id }) }}">{{pa.project}} ({{pa.project.association}})</a></li>
+    {% endfor %}
+    </ul>
+</div>
+{%else%}
+    <!--   Pas de candidatures en attente de réponse. -->
+{%endif%}
+
+{%if terminated|length > 0%}
+ <div class="colquarter">
+ <h3>   Donne ton avis ! </h3>
+        <ul>
+        {% for pa in terminated %}
+           <li><a href="{{ path('manage_PA', { 'id': pa.id }) }}">{{pa.project}}</a></li>
+        {% endfor %}
+        </ul>
+</div>
+{%else%}
+    <!-- Pas de projets en attente de notation de ta part. -->
+{%endif%}
+
+{%if marked|length > 0%}
+ <div class="colquarter">
+ <h3>     Projets terminés :</h3>
+        <ul>
+        {% for pa in marked %}
+           <li><a href="{{ path('manage_PA', { 'id': pa.id }) }}">{{pa.project}}</a></li>
+        {% endfor %}
+        </ul>
+</div>
+{%else%}
+   <!--  Pas de projets terminés.-->
+{%endif%}
+
+{%if validated|length > 0%}
+  <div class="colquarter">
+ <h3>    Candidatures validées : </h3>
+        <ul>
+        {% for pa in validated %}
+            <li><a href="{{ path('manage_PA', { 'id': pa.id }) }}">{{pa.project}}</a></li>
+        {% endfor %}
+        </ul>
+</div>
+{%else%}
+    <!-- Pas de candidatures validées.-->
+{%endif%}
+
+
+{%if rejected|length > 0%}
+   <div class="colquarter">
+ <h3>    Candidatures rejetées : </h3>
+        <ul>
+        {% for pa in rejected %}
+           <li><a href="{{ path('manage_PA', { 'id': pa.id }) }}">{{pa.project}}</a></li>
+        {% endfor %}
+        </ul>
+		N'hésitez pas à contacter l'association pour demander des précisions.
+</div>
+{%else%}
+   <!--  Pas de candidatures rejetées.-->
+{%endif%}
+
+
+</div>
+<div class="clearboth"></div>
+{% endblock %}

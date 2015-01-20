@@ -28,13 +28,7 @@ class Young
      */
     protected $user;
 
-    /**
-     * @var array
-     *
-     * @ORM\OneToMany(targetEntity="eclore\userBundle\Entity\ProjectApplication", mappedBy="young")
-     */
-    private $appliedProjects;
-    
+   
     /**
      * @var array
      *
@@ -45,7 +39,6 @@ class Young
     public function __construct()
     {
     $this->institutions = new \Doctrine\Common\Collections\ArrayCollection();
-    $this->appliedProjects = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     public function __toString()
@@ -53,11 +46,6 @@ class Young
     return $this->getUser()->__toString();
     }
     
-    public function getPAByStatus($stat)
-    {
-    return $this->appliedProjects->filter(function($p) use ($stat){return $p->getStatus()==$stat;});
-    }
-
     /**
      * Get id
      *
@@ -124,53 +112,6 @@ class Young
         return $this->institutions;
     }
 
-    /**
-      * Add applied projects
-      *
-      * @param eclore\userBundle\Entity\ProjectApplication $projectApplication
-      */
-      
-    public function addAppliedProject(\eclore\userBundle\Entity\ProjectApplication $projectApplication) 
-    {
-      $this->appliedProjects[] = $projectApplication;
-    }
-  
-    /**
-      * Remove applied projects
-      *
-      * @param eclore\userBundle\Entity\ProjectApplication $projectApplication
-      */
-    public function removeAppliedProject(\eclore\userBundle\Entity\ProjectApplication $projectApplication) 
-    {
-      $this->appliedProjects->removeElement($projectApplication);
-    }
-
-    /**
-     * Get appliedProjects
-     *
-     * @return array 
-     */
-    public function getAppliedProjects()
-    {
-        return $this->appliedProjects;
-    }
-
     
-    public function hasApplied($project)
-    {
-        foreach($project->getProjectApplications() as $PA){
-            if($PA->getYoung()->getId() == $this->getId()) return True;
-        }
-    return false;
-    }
-    
-    public function getCurrentProjects()
-    {
-        $res=array();
-        foreach($this->getAppliedProjects() as $PA)
-            if($PA->getProject()->isStarted())
-                $res[]=$PA->getProject();
-        return $res;
-    }
     
 }

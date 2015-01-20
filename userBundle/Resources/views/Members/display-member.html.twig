@@ -14,7 +14,7 @@
 </div>
 <div class="coldroite"> 
 	<h1>{{u.username}}</h1>
-{%if u in app.user.contacts and u.privacyLevel != 2 %}
+{%if is_granted("IS_AUTHENTICATED_REMEMBERED") and u in app.user.contacts and u.privacyLevel != 2 %}
 		<div class="soustitre">  {{u}}, {{u.age}} ans, téléphone: {{u.mobile}},   email: {{u.email}}</div>
 		{% if u.hasRole('ROLE_ASSOM') %}
 			Fonction: {{u.assoM.quality}}<br>

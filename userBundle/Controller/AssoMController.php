@@ -147,7 +147,7 @@ class AssoMController extends Controller
                     // creation recommandation
                     $recomm->setSender($user);
                     $recomm->setProject($PA->getProject());
-                    $recomm->addReceiver($PA->getYoung()->getUser());
+                    $recomm->addReceiver($PA->getUser());
                     $recomm->setInitDate(new \DateTime());
                     $recomm->setType('RECOMMENDATION');
                     $em->persist($recomm);

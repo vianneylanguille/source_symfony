@@ -18,29 +18,30 @@
 {%set validated = proj.PAByStatus('VALIDATED') %}
 {%set terminated = proj.PAByStatus('TERMINATED') %}
 {%set marked = proj.PAByStatus('MARKED') %}
-{%if (is_granted("IS_AUTHENTICATED_REMEMBERED") and app.user.hasRole('ROLE_YOUNG')) or not is_granted("IS_AUTHENTICATED_REMEMBERED")%}
-        <a href="{{ path('young_apply',{'id': proj.id}) }}"> Candidater à ce projet!</a>
-{%endif%}
-{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-    {% if date(proj.enddate) < date() %}
-        Ce projet est terminé.<br>
-        {{validated|length+terminated|length+marked|length}} participants.
-        
-    {%else%}
-		</br></br>
-		{% if validated|length+terminated|length+marked|length > 0 %}
-			Jeunes inscrits à ce projet:<ul>
-				{%for part in validated%}
-				     {%if part.young.user.privacyLevel != 2%}
-					<li>{{part.young.user|printName}}</li>
-				    {%endif%}
-				{%endfor%}
-				</ul>
-			{% endif%}
-    {%endif%}
+{% if date(proj.enddate) < date() %}
+    Ce projet est terminé.<br>
+    {{validated|length+terminated|length+marked|length}} participants.
 {%else%}
-    {{validated|length}} participants enregistrés.
-{% endif %}
+    {%if is_granted("IS_AUTHENTICATED_REMEMBERED")%}
+            {%if app.user.hasApplied(proj)%}
+            Tu as deja candidaté pour ce projet.
+            {%else%}
+            <a href="{{ path('apply',{'id': proj.id}) }}"> Candidater à ce projet!</a>
+            {%endif%}
+            </br></br>
+            {% if validated|length+terminated|length+marked|length > 0 %}
+                Jeunes inscrits à ce projet:<ul>
+                    {%for part in validated%}
+                         {%if part.young.user.privacyLevel != 2%}
+                        <li>{{part.young.user|printName}}</li>
+                        {%endif%}
+                    {%endfor%}
+                    </ul>
+            {% endif%}
+    {%else%}
+        {{validated|length}} participants enregistrés.
+    {% endif %}
+{% endif%}
 <br>
 </div>
 

@@ -61,7 +61,7 @@
         {%else%}{{proj.required - proj.getPAByStatus('VALIDATED')|length}} participants encore souhaités.
         {%endif%}
     {%else%}   
-        Merci de clôturer les candidatures des jeunes ayant participé.</br>
+        Merci de clôturer les candidatures des personnes ayant participé.</br>
     {%endif%}
 </div>
 
@@ -73,7 +73,7 @@
         Candidatures à clôturer:
             <ul>
             {% for pa in validated %}
-                <li>{{pa.young}} 
+                <li>{{pa.user}} 
                 <a href="{{ path('assom_manageApplication', { 'id': pa.id }) }}">Clôturer</a></li>
             {% endfor %}
             </ul>
@@ -87,7 +87,7 @@
         Candidatures à traiter:
             <ul>
             {% for pa in pending %}
-                <li>{{pa.young}} <a href="{{ path('assom_manageApplication', { 'id': pa.id }) }}">Manager</a></li>
+                <li>{{pa.user}} <a href="{{ path('assom_manageApplication', { 'id': pa.id }) }}">Manager</a></li>
             {% endfor %}
             </ul>
         {% else %}
@@ -98,7 +98,7 @@
         Candidatures validées:
             <ul>
             {% for pa in validated %}
-                <li>{{pa.young}} 
+                <li>{{pa.user}} 
                 <a href="{{ path('assom_manageApplication', { 'id': pa.id }) }}">Manager</a></li>
             {% endfor %}
             </ul>
@@ -110,7 +110,7 @@
         Candidatures rejetées:
             <ul>
             {% for pa in rejected %}
-                <li>{{pa.young}} <a href="{{ path('assom_manageApplication', { 'id': pa.id }) }}">Manager</a></li>
+                <li>{{pa.user}} <a href="{{ path('assom_manageApplication', { 'id': pa.id }) }}">Manager</a></li>
             {% endfor %}
             </ul>
         {% else %}

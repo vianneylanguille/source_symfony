@@ -25,9 +25,9 @@ class ProjectApplication
 
     /**
      *
-     * @ORM\ManyToOne(targetEntity="eclore\userBundle\Entity\Young", inversedBy="appliedProjects")
+     * @ORM\ManyToOne(targetEntity="eclore\userBundle\Entity\User", inversedBy="appliedProjects")
      */
-    private $young;
+    private $user;
 
     /**
      *
@@ -90,14 +90,14 @@ class ProjectApplication
     }
 
     /**
-     * Set young
+     * Set user
      *
-     * @param \stdClass $young
+     * @param \stdClass $user
      * @return ProjectApplication
      */
-    public function setYoung($young)
+    public function setUser($user)
     {
-        $this->young = $young;
+        $this->user = $user;
 
         return $this;
     }
@@ -107,9 +107,9 @@ class ProjectApplication
      *
      * @return \stdClass 
      */
-    public function getYoung()
+    public function getUser()
     {
-        return $this->young;
+        return $this->user;
     }
 
     /**

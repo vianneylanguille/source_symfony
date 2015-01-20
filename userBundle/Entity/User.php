@@ -117,6 +117,13 @@ class User extends BaseUser
      */
     private $quality;
     
+    /**
+     * @var array
+     *
+     * @ORM\OneToMany(targetEntity="eclore\userBundle\Entity\ProjectApplication", mappedBy="user")
+     */
+    private $appliedProjects;
+    
     public function __construct()
     {
     parent::__construct();
@@ -125,6 +132,12 @@ class User extends BaseUser
     $this->albums = new \Doctrine\Common\Collections\ArrayCollection();
     $this->lastSeenDate = new \DateTime();
     $this->registrationDate = new \DateTime();
+    $this->appliedProjects = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    public function getPAByStatus($stat)
+    {
+    return $this->appliedProjects->filter(function($p) use ($stat){return $p->getStatus()==$stat;});
     }
     
     public function getHeadshot()
@@ -448,6 +461,55 @@ class User extends BaseUser
         if($this->headshot==null)
             return 'uploads/img/defaultHeadshot.jpg';
         return $this->headshot->getWebPath();
+    }
+    
+    /**
+      * Add applied projects
+      *
+      * @param eclore\userBundle\Entity\ProjectApplication $projectApplication
+      */
+      
+    public function addAppliedProject(\eclore\userBundle\Entity\ProjectApplication $projectApplication) 
+    {
+      $this->appliedProjects[] = $projectApplication;
+    }
+  
+    /**
+      * Remove applied projects
+      *
+      * @param eclore\userBundle\Entity\ProjectApplication $projectApplication
+      */
+    public function removeAppliedProject(\eclore\userBundle\Entity\ProjectApplication $projectApplication) 
+    {
+      $this->appliedProjects->removeElement($projectApplication);
+    }
+
+    /**
+     * Get appliedProjects
+     *
+     * @return array 
+     */
+    public function getAppliedProjects()
+    {
+        return $this->appliedProjects;
+    }
+
+    
+    public function hasApplied($project)
+    {
+        foreach($project->getProjectApplications() as $PA){
+            if($PA->getUser()->getId() == $this->getId()) return True;
+        }
+    return false;
+    }
+    
+    public function getCurrentProjects()
+    {
+        $res=array();
+        foreach($this->getAppliedProjects() as $PA)
+            if($PA->getProject()->isStarted())
+                $res[]=$PA->getProject();
+        return $res;
     }
     
 }

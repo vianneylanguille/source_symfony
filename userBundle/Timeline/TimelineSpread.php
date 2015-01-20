@@ -111,7 +111,7 @@ CONST USER_CLASS = 'eclore\userBundle\Entity\User';
                 // informs youngs who took part in one of asso projects
                 foreach($asso->getProjects() as $proj)
                     foreach($proj->getProjectApplications() as $PA)
-                        $this->informedUsers[]=$PA->getYoung()->getUser()->getId();
+                        $this->informedUsers[]=$PA->getUser()->getId();
             }
         }elseif($action->getVerb() == 'registered'){
             //newUser
@@ -147,10 +147,12 @@ CONST USER_CLASS = 'eclore\userBundle\Entity\User';
     }
         
     public function informsYoungInstM($user){
+    if($user->hasRole('ROLE_YOUNG')){
         foreach($user->getYoung()->getInstitutions() as $inst)
             foreach($inst->getMembers() as $instM)
                 $this->informedUsers[]=$instM->getUser()->getId();
         $this->informedUsers[]=$user->getId();
+        }
     }
     
     public function informsUserContacts($user){

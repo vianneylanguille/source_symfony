@@ -55,18 +55,7 @@ class AdminController extends Controller
             //event dispatcher
             $event = new NewUserEvent($profile->getUser());
             $this->container->get('event_dispatcher')->dispatch(TimelineEvents::onNewUser, $event);
-            // Generate new token with new roles
-            $token = new \Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken(
-              $profile->getUser(),
-              null,
-              'main',
-              $profile->getUser()->getRoles()
-            );
-            $this->container->get('security.context')->setToken($token);
-            // Get the userManager and refresh user
-            $userManager = $this->container->get('fos_user.user_manager');
-            $userManager->refreshUser($profile->getUser());
-                    
+            
             // send mail to user
             $profile->getUser()->getEmail();
             

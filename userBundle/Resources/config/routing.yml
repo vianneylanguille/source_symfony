@@ -112,21 +112,21 @@ instm_displayYoung:
 
 # young
         
-young_apply:
-    pattern:  /jeune/candidater/{id}
-    defaults: { _controller: ecloreuserBundle:Young:apply }
+apply:
+    pattern:  /home/candidater/{id}
+    defaults: { _controller: ecloreuserBundle:Members:apply }
     requirements:
         id:  \d+
         
-young_manage:
-    pattern:  /jeune/gerer-candidature/{id}
-    defaults: { _controller: ecloreuserBundle:Young:manageApplication }
+manage_PA:
+    pattern:  /home/gerer-candidature/{id}
+    defaults: { _controller: ecloreuserBundle:Members:manageApplication }
     requirements:
         id:  \d+   
 
-young_projects:
-    pattern:  /jeune/projets/
-    defaults: { _controller: FrameworkBundle:Template:template, template:'ecloreuserBundle:Young:projects.html.twig' }
+applied_projects:
+    pattern:  home/projets/
+    defaults: { _controller: FrameworkBundle:Template:template, template:'ecloreuserBundle:Members:projects.html.twig' }
         
 # admin
     
@@ -208,6 +208,10 @@ displayNewsPost:
     defaults: {  _controller: ecloreuserBundle:Static:displayNewsPost}
     requirements:
         id:  \d+
+        
+displayNewsPosts:
+    pattern:  /Actualites
+    defaults: {  _controller: ecloreuserBundle:Static:displayNewsPosts}
         
 displayInst:
     pattern:  /display-institution/{id}

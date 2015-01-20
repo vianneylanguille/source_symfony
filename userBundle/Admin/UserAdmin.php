@@ -47,22 +47,16 @@ class UserAdmin extends Admin
      }
         $listMapper
             ->add('username')
-            ->add('email')
+            ->add('lastName')
+            ->add('firstName')
             ->add('young')
             ->add('instM')
             ->add('assoM')
-            ->add('quality')
             ->add('enabled')
-            ->add('locked')
-            ->add('expired')
-            ->add('albums')   
+            ->add('appliedProjects', 'entity', array('class'=>'ecloreuserBundle:ProjectApplication',
+            'multiple'=>true, 'required' =>false))  
             ->add('roles', 'choice', array('choices'=>$roles,'multiple'=>true ))
-            ->add('credentialsExpired')
-            ->add('lastName')
-            ->add('firstName') 
-            ->add('birthDate', 'date') 
-            ->add('contacts', 'entity', array('class'=>'ecloreuserBundle:User',
-            'multiple'=>true, 'required' =>false))            
+                       
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -91,26 +85,32 @@ class UserAdmin extends Admin
             $fullPath = $container->get('request')->getBasePath().'/'.$webPath;
             $fileFieldOptions['help'] = '<img src="'.$fullPath.'" class="admin-preview" />';
         }
-            
-            
+         
         $formMapper
-            ->add('username')
-            ->add('usernameCanonical')
+            ->with('General')
+                ->add('username')
+                ->add('email')
+                ->add('usernameCanonical')
+                ->add('emailCanonical')
+            ->end()
+            ->with('Management')
+                ->add('locked', null, array('required' => false))
+                ->add('expired', null, array('required' => false))
+                ->add('enabled', null, array('required' => false))
+                ->add('credentialsExpired', null, array('required' => false))
+                ->add('roles', 'choice', array('choices'=>$roles,'multiple'=>true ))
+            ->end()
+        ->with('Reseau')      
+            ->add('appliedProjects', 'entity', array('class'=>'ecloreuserBundle:ProjectApplication',
+            'multiple'=>true, 'required' =>false))  
             ->add('young', 'entity', array('class'=>'ecloreuserBundle:Young',
             'required' => false ) )
             ->add('instM', 'entity', array('class'=>'ecloreuserBundle:InstitutionMember',
             'required' => false ) )
             ->add('assoM', 'entity', array('class'=>'ecloreuserBundle:AssociationMember',
             'required' => false ) )
-            ->add('email')
             ->add('quality')
-            ->add('emailCanonical')
-            ->add('enabled', 'checkbox', array('required' => false ))
-            ->add('locked', 'checkbox', array('required' => false ))
-            ->add('expired', 'checkbox', array('required' => false ))
-            ->add('roles', 'choice', array('choices'=>$roles,'multiple'=>true ))
-            ->add('credentialsExpired', 'checkbox', array('required' => false ))
-            ->add('credentialsExpireAt', 'date', array( 'widget' => 'single_text', 'required'=>false))
+
             ->add('birthDate', 'date', array( 'widget' => 'choice', 'years'=>range((int)date("Y")-100, (int)date("Y"))))
             ->add('lastName')
             ->add('firstName')
@@ -119,6 +119,7 @@ class UserAdmin extends Admin
             ->add('lastSeenDate', 'date')
             ->add('contacts', 'entity', array('class'=>'ecloreuserBundle:User',
             'multiple'=>true, 'required' =>false))
+            ->end()
         ;
     }
 
@@ -130,6 +131,8 @@ class UserAdmin extends Admin
         $showMapper
             ->add('username')
             ->add('usernameCanonical')
+            ->add('appliedProjects', 'entity', array('class'=>'ecloreuserBundle:ProjectApplication',
+            'multiple'=>true, 'required' =>false))  
             ->add('email')
             ->add('emailCanonical')
             ->add('enabled')
@@ -158,4 +161,5 @@ class UserAdmin extends Admin
             'multiple'=>true, 'required' =>false))
         ;
     }
+  
 }

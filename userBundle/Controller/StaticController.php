@@ -10,9 +10,9 @@ class StaticController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('ecloreuserBundle:Project');
-        $projs = $repository->findAll();
+        $projs = $repository->findBy(array(), array('id'=>'DESC'));
         $repository = $em->getRepository('ecloreuserBundle:NewsPost');
-        $posts = $repository->findAll();
+        $posts = $repository->findBy(array(), array('id'=>'DESC'));
             
         return $this->render('ecloreuserBundle::index.html.twig', array('projs'=>$projs, 'posts'=>$posts));
     }
@@ -32,6 +32,17 @@ class StaticController extends Controller
             
         return $this->render('ecloreuserBundle:Static:newspost.html.twig',
         array('post' => $post));
+    
+    }
+    
+        public function displayNewsPostsAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('ecloreuserBundle:NewsPost');
+        $posts = $repository->getCurrentNewsPosts();
+            
+        return $this->render('ecloreuserBundle:Static:newsposts.html.twig',
+        array('posts' => $posts));
     
     }
 

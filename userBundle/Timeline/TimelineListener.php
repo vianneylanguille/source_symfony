@@ -3,6 +3,7 @@
 namespace eclore\userBundle\Timeline;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\DependencyInjection\Container;
+use Symfony\Component\EventDispatcher\Event;
 
 class TimelineListener
 {
@@ -25,7 +26,7 @@ class TimelineListener
     public function onValidatedPA(PAEvent $event)
     {
     $actionManager = $this->container->get('spy_timeline.action_manager');
-    $subject = $actionManager->findOrCreateComponent($event->getPA()->getYoung()->getUser());
+    $subject = $actionManager->findOrCreateComponent($event->getPA()->getUser());
     $complement = $actionManager->findOrCreateComponent($event->getPA()->getProject());
     $action = $actionManager->create($subject, 'take_part', array('complement' => $complement));
     $actionManager->updateAction($action);
@@ -34,7 +35,7 @@ class TimelineListener
     public function onNewPA(PAEvent $event)
     {
     $actionManager = $this->container->get('spy_timeline.action_manager');
-    $subject = $actionManager->findOrCreateComponent($event->getPA()->getYoung()->getUser());
+    $subject = $actionManager->findOrCreateComponent($event->getPA()->getUser());
     $complement = $actionManager->findOrCreateComponent($event->getPA()->getProject());
     $action = $actionManager->create($subject, 'apply', array('complement' => $complement));
     $actionManager->updateAction($action);
@@ -60,7 +61,7 @@ class TimelineListener
     public function onRejectedPA(PAEvent $event)
     {
     $actionManager = $this->container->get('spy_timeline.action_manager');
-    $subject = $actionManager->findOrCreateComponent($event->getPA()->getYoung()->getUser());
+    $subject = $actionManager->findOrCreateComponent($event->getPA()->getUser());
     $complement = $actionManager->findOrCreateComponent($event->getPA()->getProject());
     $action = $actionManager->create($subject, 'be_rejected', array('complement' => $complement));
     $actionManager->updateAction($action);
@@ -78,7 +79,7 @@ class TimelineListener
     public function onMarkedProject(MarkedEvent $event)
     {
     $actionManager = $this->container->get('spy_timeline.action_manager');
-    $subject = $actionManager->findOrCreateComponent($event->getPA()->getYoung()->getUser());
+    $subject = $actionManager->findOrCreateComponent($event->getPA()->getUser());
     $complement = $actionManager->findOrCreateComponent($event->getPA()->getProject());
     $action = $actionManager->create($subject, 'mark_project', array('complement' => $complement));
     $actionManager->updateAction($action);
@@ -88,7 +89,7 @@ class TimelineListener
     {
     $actionManager = $this->container->get('spy_timeline.action_manager');
     $subject = $actionManager->findOrCreateComponent($event->getPA()->getProject()->getAssociation());
-    $complement = $actionManager->findOrCreateComponent($event->getPA()->getYoung()->getUser());
+    $complement = $actionManager->findOrCreateComponent($event->getPA()->getUser());
     $action = $actionManager->create($subject, 'mark_young', array('complement' => $complement));
     $actionManager->updateAction($action);
     }
@@ -102,7 +103,7 @@ class TimelineListener
     $actionManager->updateAction($action);
     }
     
-    public function onPendingValidation(Symfony\Component\EventDispatcher\Event $event)
+    public function onPendingValidation(Event $event)
     {
      $message = \Swift_Message::newInstance();
     $template = $this->container->get('twig')->loadTemplate('ecloreuserBundle:Admin:email-pending-validation.html.twig');

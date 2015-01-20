@@ -4,7 +4,6 @@ imports:
     - { resource: @ecloreuserBundle/Resources/config/services.yml }
     
 spy_timeline:
-    paginator: ~
     drivers:
         orm:
             object_manager: doctrine.orm.entity_manager
@@ -101,6 +100,7 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+    disable_delivery:  true
     
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
@@ -108,7 +108,6 @@ fos_user:
     user_class: eclore\userBundle\Entity\User
     service:
         mailer: fos_user.mailer.twig_swift
-        user_provider : fos_user.user_provider.username
     from_email:
             address:        contact@reseau-eclore.org
             sender_name:    "Réseau Eclore"

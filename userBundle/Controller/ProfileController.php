@@ -23,7 +23,6 @@ use eclore\userBundle\Form\AlbumType;
 
 class ProfileController extends Controller
 {   
-
     public function showAlbumsAction()
     {
     return $this->container->get('templating')->renderResponse('ecloreuserBundle:Profile:albums.html.twig');
@@ -119,11 +118,10 @@ class ProfileController extends Controller
         $rep = $this->container->get('doctrine')
                        ->getManager()
                        ->getRepository('ecloreuserBundle:Notification');
-        $notType = 'MARK';
-        if($user->hasRole('ROLE_YOUNG'))$notType = 'RECOMMENDATION';
-        $recomm = $rep->findByReceiverAndType($user, $notType);
+        $recomm = $rep->findByReceiverAndType($user, 'RECOMMENDATION');
+        $mark = $rep->findByReceiverAndType($user, 'MARK');
         return $this->container->get('templating')->renderResponse('ecloreuserBundle:Profile:recommendations.html.twig',
-        array('recomm'=>$recomm));
+        array('recomm'=>$recomm, 'mark'=>$mark));
     }
     
     public function acknowledgeContactAction($id, $action)

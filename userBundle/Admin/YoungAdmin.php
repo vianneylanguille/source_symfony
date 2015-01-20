@@ -16,8 +16,7 @@ class YoungAdmin extends Admin
             ->add('user')
             ->add('institutions', 'entity', array('class'=>'ecloreuserBundle:Institution',
             'property'=>'institutionName', 'multiple'=>true, 'required'=>false))
-            ->add('appliedProjects', 'entity', array('class'=>'ecloreuserBundle:ProjectApplication',
-            'multiple'=>true, 'required' =>false)) 
+            
         ;
     }
 
@@ -28,7 +27,6 @@ class YoungAdmin extends Admin
             ->add('user')
             ->add('quality')
             ->add('institutions')
-            ->add('appliedProjects')
             ->add('friends')
         ;
     }*/
@@ -39,7 +37,6 @@ class YoungAdmin extends Admin
         $listMapper
             ->addIdentifier('user')
             ->add('institutions')
-            ->add('appliedProjects')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),

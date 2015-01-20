@@ -15,7 +15,7 @@ class ProjectApplicationAdmin extends Admin
     {
             
         $formMapper
-            ->add('young', 'entity', array('class'=>'ecloreuserBundle:Young')) 
+            ->add('user', 'entity', array('class'=>'ecloreuserBundle:User')) 
             ->add('project', 'entity', array('class'=>'ecloreuserBundle:Project')) 
             ->add('message', 'textarea')
             ->add('status', 'choice', array('choices'=>$this->getConfigurationPool()->getContainer()->getParameter('PAStatus')))
@@ -40,7 +40,7 @@ class ProjectApplicationAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('id')
-            ->add('young', 'entity', array('class'=>'ecloreuserBundle:Young')) 
+            ->add('user', 'entity', array('class'=>'ecloreuserBundle:User')) 
             ->add('project', 'entity', array('class'=>'ecloreuserBundle:Project')) 
             ->add('status', 'choice', array('choices'=>$this->getConfigurationPool()->getContainer()->getParameter('PAStatus')))
             ->add('statusDate')
