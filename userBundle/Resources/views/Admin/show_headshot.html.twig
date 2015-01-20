@@ -1,0 +1,9 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+
+{% block field%}
+    {%if object.headshot is not null %}
+    <img src="{{app.request.basepath}}/{{ object.headshot.getWebPath }}" class="admin-view">
+    {%else%}
+    Pas de photo 
+    {%endif%}
+{% endblock %}

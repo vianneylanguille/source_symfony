@@ -1,0 +1,24 @@
+
+				<ul>
+					<li> <h3> <a href="{{path('ecloreuser_homepage')}}">Accueil</a> </h3> 
+						  <a href="{{path('ecloreuser_leReseau')}}" class="sousmenu"> <span>Qui sommes nous ? </span> </a>   
+						  <a href="mailto:contact@reseau-eclore.org" class="sousmenu"><span>Nous contacter</span> </a>   </li> 
+					<li> <h3> <a href="#">Les projets</a>   </h3>
+						 <a href="{{path('ecloreuser_rechercherProjet')}}" class="sousmenu"> <span>Rechercher un projet</span></a>
+						 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') and app.user.hasRole('ROLE_ASSOM') %}
+						 <a href="{{path('assom_registerProject')}}" class="sousmenu"> <span>Proposer un projet</span></a>
+						 {%endif%}
+					</li>
+			        <li><h3> <a href="#">Le réseau</a>  </h3>
+						 <a href="{{path('displayNewsPost' , {'id': 1})}}" class="sousmenu"><span>Les actualités</span></a> 
+						 <a href="{{path('ecloreuser_leReseau')}}" class="sousmenu"><span>Vie du réseau</span></a> 
+						 <a href="{{path('ecloreuser_leReseau')}}" class="sousmenu"><span>Témoignages </span></a> 
+					</li>
+                    {%if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+					<li> <h3><a href="{{path('ecloreuser_home')}}">Mon espace</a><h3> </li>
+                    <li> <h3><a href="{{path('fos_user_security_logout')}}">Déconnexion</a><h3> </li>
+                    {%else%}
+					<li> <h3><a href="{{path('fos_user_registration_register')}}"> M'inscrire </a><h3> </li>
+                    <li> <h3><a href="{{path('fos_user_security_login')}}">Me connecter</a><h3> </li>
+                    {%endif%}
+				</ul>		

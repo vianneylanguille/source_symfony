@@ -1,0 +1,53 @@
+
+{% block title %}Administration{% endblock%}
+
+{% block content %}
+{% for key, messages in app.session.flashbag.all() %}
+    {% for message in messages %}
+            <div class="alert-{{ key }}">
+              {{ message|trans({}, 'FOSUserBundle') }}
+            </div>
+    {% endfor %}
+{% endfor %}        
+
+
+<a href="{{ path('sonata_admin_dashboard') }}">Accéder à la plateforme de gestion des enregistrements</a>
+<br>
+{% if assoMs |length>0 or instMs|length>0 %}
+    <h3>Profils en attente de validation</h3>
+    {% if assoMs |length>0 %}
+        <h4>Membres d'associations</h4>
+        <table>
+        {% for assoM in assoMs %}
+            <tr><td>{{assoM}}</td><td>{{assoM.user.quality}}</td>
+            <td>{{assoM.user.registrationDate|date("m-d-Y")}}</td>
+            <td><a href="{{ path('admin_validate_profile', { 'type': 'AssoM', 'id': assoM.id }) }}">Valider</a></td></tr>
+        {% endfor%}
+        </table>
+        {%endif%}
+    <br>
+        {% if instMs |length>0%}
+        <h4>Membres d'institutions</h4>
+        <table>
+        {% for instM in instMs %}
+            <tr><td>{{instM}}</td><td>{{instM.user.quality}}</td>
+            <td>{{instM.user.registrationDate|date("m-d-Y")}}</td>
+            <td><a href="{{ path('admin_validate_profile', { 'type': 'InstM', 'id': instM.id }) }}">Valider</a></td></tr>
+        {% endfor%}
+        </table>
+        {%endif%}
+{%endif%}
+    
+{% if projects|length>0 %}
+    <br>
+    <h3>Projets en attente de validation</h3>
+    <table>
+    {% for proj in projects %}
+        <tr><td>{{proj}}</td><td>{{proj.association}}</td><td>{{proj.description}}</td>
+        <td>{{proj.responsibles|join(', ') }}</td><td>{{proj.startDate|date("m-d-Y")}}</td>
+        <td><a href="{{ path('admin_validate_project', { 'id': proj.id }) }}">Valider</a></td></tr>
+    {% endfor%}
+    </table>
+{%endif%}
+
+{% endblock %}

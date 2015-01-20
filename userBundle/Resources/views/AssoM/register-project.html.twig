@@ -1,0 +1,69 @@
+{% extends "ecloreuserBundle::page_lambda.html.twig" %}
+
+{% block title %}Enregistrer un projet{% endblock %}
+
+{%set color='vert'%}
+{%set first='Mon Éclore'%}
+{%set second='Espace personnel'%}
+
+{% block content %}
+{%include "ecloreuserBundle::menu_user.html.twig"%}
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="{{ asset('bundles/ecloreuser/js/register-project/1_jquery.ui.addresspicker.js') }}"></script>
+<script src="{{ asset('bundles/ecloreuser/js/register-project/2_jquery.xdomainrequest.min.js') }}"></script>
+<div class="coldroite">
+{{ form(form) }}
+<div id='map'></div>
+<style>
+#map {
+  border: 1px solid #DDD;
+  width:300px;
+  height: 300px;
+  float:left; 
+  margin: 0px 0 0 10px;
+  -webkit-box-shadow: #AAA 0px 0px 15px;
+}
+
+.ui-menu .ui-menu-item a {
+  font-size: 12px;
+}
+
+.ui-autocomplete-input{
+  font-size: 14px;
+  width: 300px;
+  height: 24px;
+  margin-bottom: 5px;
+    border: 1px solid #DDD !important;
+  padding-top: 0px !important;
+}
+</style>
+<script>
+  $(function() {
+    var addresspickerMap = $( ".addressPickerInput" ).addresspicker({
+      regionBias: "fr",
+      mapOptions: {
+        zoom: 4,
+        center: new google.maps.LatLng(46, 2),
+        scrollwheel: false,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      },
+      elements: {
+        map:      "#map",
+        lat:      ".addressPickerLat",
+        lng:      ".addressPickerLng",
+        locality: '.addressPickerCity',
+        country: '.addressPickerCountry',
+        postal_code: '.addressPickerPostcode'
+      }
+    });
+
+    var gmarker = addresspickerMap.addresspicker( "marker");
+    gmarker.setVisible(true);
+    addresspickerMap.addresspicker("updatePosition");
+  });
+  </script>
+  </div>
+<div class="clearboth"></div>
+{% endblock %}

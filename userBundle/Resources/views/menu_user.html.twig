@@ -1,0 +1,19 @@
+<div id="menugauche"> 
+    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        <ul> <a href="{{ path('ecloreuser_home') }}"> <li class="menugauche_el1"> Mon espace </li>  </a></ul>
+        <ul> <a href="{{ path('fos_user_profile_show') }}"> <li class="menugauche_profil"> Mon profil </li>  </a></ul>
+        <ul> <a href="{{ path('user_annuaire') }}"> <li class="menugauche_annuaire"> Mon annuaire </li>  </a></ul> 
+        <!-- <ul> <a href="{{ path('user_albums') }}"> <li class="menugauche_photo"> Mes photos </li>  </a></ul>  -->
+        {%if app.user.hasRole('ROLE_YOUNG') %}
+            <ul> <a href="{{ path('user_recomm') }}"> <li class="menugauche_recom"> Mes recommandations </li> </a> </ul>
+            <ul> <a href="{{ path('young_projects') }}"> <li class="menugauche_projets"> Mes projets </li>  </a></ul>
+        {%elseif app.user.hasRole('ROLE_ASSOM') %}
+            <ul> <a href="{{ path('user_recomm') }}"> <li class="menugauche_avis"> Mes avis </li>  </a></ul>
+            <ul> <a href="{{ path('assom_projects') }}"> <li class="menugauche_projets"> Mes projets </li>  </a></ul>
+            <ul> <a href="{{ path('assom_registerProject') }}"> <li class="menugauche_el6"> Créer un projet </li>  </a></ul>
+        {%endif%}
+    {%else%}
+        <ul> <a href="{{ path('fos_user_registration_register') }}"> <li class="menugauche_el6"> Inscription </li>  </a></ul>
+        <ul> <a href="{{ path('fos_user_security_login') }}"> <li class="menugauche_el5"> Connexion </li>  </a></ul>
+    {%endif%}
+</div>

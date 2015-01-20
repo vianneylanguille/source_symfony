@@ -1,0 +1,150 @@
+parameters:
+#    ecloreuser.example.class: eclore\userBundle\Example
+
+services:
+    eclore.twig.extension:
+        class: eclore\userBundle\Extensions\Twig\templateFunctionsHelper
+        arguments: [@service_container, @security.context]
+        tags:
+               - { name: twig.extension }
+               
+    ecloreuser.image_type_extension:
+        class: eclore\userBundle\Form\Extension\ImageTypeExtension
+        tags:
+            - { name: form.type_extension, alias: file }
+    
+    
+    ecloreuser.admin.album:
+        class: eclore\userBundle\Admin\AlbumAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Entités", label: "Album" }
+        arguments: [~, eclore\userBundle\Entity\Album, SonataAdminBundle:CRUD]
+        calls:
+            - [ setTranslationDomain, [ecloreuserBundle]]
+            
+    ecloreuser.admin.project:
+        class: eclore\userBundle\Admin\ProjectAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Entités", label: "Projets" }
+        arguments: [~, eclore\userBundle\Entity\Project, SonataAdminBundle:CRUD]
+        calls:
+            - [ setTranslationDomain, [ecloreuserBundle]]
+            
+    ecloreuser.admin.projectlabels:
+        class: eclore\userBundle\Admin\ProjectLabelsAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Entités", label: "Labels de projets" }
+        arguments: [~, eclore\userBundle\Entity\ProjectLabels, SonataAdminBundle:CRUD]
+        calls:
+            - [ setTranslationDomain, [ecloreuserBundle]]
+            
+    ecloreuser.admin.projectapplication:
+        class: eclore\userBundle\Admin\ProjectApplicationAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Entités", label: "Candidatures" }
+        arguments: [~, eclore\userBundle\Entity\ProjectApplication, SonataAdminBundle:CRUD]
+        calls:
+            - [ setTranslationDomain, [ecloreuserBundle]]
+
+    eclore_user.registration.form.type:
+        class: eclore\userBundle\Form\Type\RegistrationFormType
+        arguments: [%fos_user.model.user.class%, @service_container]
+        tags:
+            - { name: form.type, alias: eclore_user_registration }
+            
+    eclore_user.profile.form.type:
+        class: eclore\userBundle\Form\Type\ProfileFormType
+        arguments: [%fos_user.model.user.class%, @service_container]
+        tags:
+            - { name: form.type, alias: eclore_user_profile }
+
+    ecloreuser.admin.associationmember:
+        class: eclore\userBundle\Admin\AssociationMemberAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Profils", label: "AssociationMember" }
+        arguments: [~, eclore\userBundle\Entity\AssociationMember, SonataAdminBundle:CRUD]
+        calls:
+            - [ setTranslationDomain, [ecloreuserBundle]]
+            
+    ecloreuser.admin.institutionmember:
+        class: eclore\userBundle\Admin\InstitutionMemberAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Profils", label: "InstitutionMember" }
+        arguments: [~, eclore\userBundle\Entity\InstitutionMember, SonataAdminBundle:CRUD]
+        calls:
+            - [ setTranslationDomain, [ecloreuserBundle]]
+            
+    ecloreuser.admin.institution:
+        class: eclore\userBundle\Admin\InstitutionAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Groupes", label: "Institution" }
+        arguments: [~, eclore\userBundle\Entity\Institution, SonataAdminBundle:CRUD]
+        calls:
+            - [ setTranslationDomain, [ecloreuserBundle]]
+            
+    ecloreuser.admin.association:
+        class: eclore\userBundle\Admin\AssociationAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Groupes", label: "Association" }
+        arguments: [~, eclore\userBundle\Entity\Association, SonataAdminBundle:CRUD]
+        calls:
+            - [ setTranslationDomain, [ecloreuserBundle]]
+
+    ecloreuser.admin.user:
+        class: eclore\userBundle\Admin\UserAdmin
+        arguments: [~, eclore\userBundle\Entity\User, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: "Membres", label: User}
+
+    ecloreuser.admin.young:
+        class: eclore\userBundle\Admin\YoungAdmin
+        arguments: [~, eclore\userBundle\Entity\Young, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: "Profils", label: "Jeune"}
+     
+    ecloreuser.admin.notification:
+        class: eclore\userBundle\Admin\NotificationAdmin
+        arguments: [~, eclore\userBundle\Entity\Notification, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: "Entités", label: "Notifications"}
+    
+    ecloreuser.admin.image:
+        class: eclore\userBundle\Admin\ImageAdmin
+        arguments: [~, eclore\userBundle\Entity\Image, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: "Entités", label: Image}
+            
+    sonata.block.service.overview:
+        class: eclore\userBundle\Block\overviewBlockService
+        arguments: ["sonata.block.service.overview", @templating, @doctrine.orm.entity_manager]
+        tags:
+            - {name: sonata.block, }
+
+    spy_timeline.timeline_spread:
+        class: eclore\userBundle\Timeline\TimelineSpread
+        arguments: [@service_container]
+        tags:
+            - {name: spy_timeline.spread} 
+            
+    ecloreuser.timeline_listener:
+        class: eclore\userBundle\Timeline\TimelineListener
+        arguments: [@service_container]
+        tags:
+            - { name: kernel.event_listener, event: ecloreuser.timeline.contact_ack, method: onContactAck }
+            - { name: kernel.event_listener, event: ecloreuser.timeline.validated_PA, method: onValidatedPA }
+            - { name: kernel.event_listener, event: ecloreuser.timeline.new_PA, method: onNewPA }
+            - { name: kernel.event_listener, event: ecloreuser.timeline.rejected_PA, method: onRejectedPA }
+            - { name: kernel.event_listener, event: ecloreuser.timeline.new_project, method: onNewProject }
+            - { name: kernel.event_listener, event: ecloreuser.timeline.marked_young, method: onMarkedYoung }
+            - { name: kernel.event_listener, event: ecloreuser.timeline.marked_project, method: onMarkedProject }
+            - { name: kernel.event_listener, event: ecloreuser.timeline.new_user, method: onNewUser }
+            - { name: kernel.event_listener, event: ecloreuser.timeline.pending_validation, method: onPendingValidation }
+
+    ecloreuser.admin.news_post:
+        class: eclore\userBundle\Admin\NewsPostAdmin
+        arguments: [~, eclore\userBundle\Entity\NewsPost, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: NewsPost}
+            
+
+

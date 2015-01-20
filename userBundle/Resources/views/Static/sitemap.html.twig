@@ -1,0 +1,28 @@
+{% extends "ecloreuserBundle::page_lambda.html.twig" %}
+
+{% block title %}Le réseau Eclore{% endblock %}
+{%set color='vert'%}
+{%set first='Mon Éclore'%}
+{%set second='Espace personnel'%}
+
+{% block content %}
+<h1>Un peu perdu ?</h1>
+Le site du réseau Eclore est divisé en deux parties:
+<ol>
+<li>Une partie publique, où vous avez accès aux actualités du réseau.
+Vous y trouverez principalement: 
+<a href="/">la page générale d'accueil et de présentation</a>, 
+<a href="{{path('ecloreuser_rechercherProjet')}}">la page pour rechercher un projet parmi ceux déjà déposés</a>, 
+<a href="{{path('fos_user_registration_register')}}">la page de connexion/inscription à votre espace membre</a>
+</li>
+<li>Une partie privée (votre espace membre), où vous avez accès en plus aux fonctionnalités du réseau, comme: 
+<a href="{{path('user_annuaire')}}">votre annuaire</a>, 
+<a href="{{path('assom_registerProject')}}">la page pour proposer un projet si vous faites partie d'une association</a>, 
+<a href="{{path('fos_user_profile_show')}}">la gestion de votre profil</a>, 
+<a href="{{path('ecloreuser_home')}}">la gestion générale de votre activité (projets/candidatures)</a>
+</li>
+</ol>
+
+Note: le site ayant été lancé il y a peu de temps, nous vous serions 
+reconnaissants de signaler toute erreur rencontrée en nous <a href="mailto:contact@reseau-eclore.org?subject=Erreur">envoyant un mail</a>. Merci !
+{% endblock %}

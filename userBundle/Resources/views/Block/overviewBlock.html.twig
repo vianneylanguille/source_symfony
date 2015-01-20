@@ -1,0 +1,17 @@
+{% extends 'SonataBlockBundle:Block:block_base.html.twig' %}
+{% block block %}
+
+<h5>Bienvenue dans la plateforme de gestion des enregistrements</h5>
+
+Sont enregistrés à ce jour:
+<ul>
+<li>{{count.proj}} projets</li>
+<li>{{count.pa}} candidatures</li>
+<li>{{count.young}} jeunes</li>
+<li>{{count.image}} images</li>
+<li>{{count.asso}} associations totalisant {{count.assoM}} membres</li>
+<li>{{count.inst}} institutions totalisant {{count.instM}} membres</li>
+</ul>
+<br><br>
+<a href="{{ path('admin_page') }}">Page de démarrage</a>
+{% endblock %}

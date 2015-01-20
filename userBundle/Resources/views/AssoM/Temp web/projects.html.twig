@@ -1,0 +1,39 @@
+{% extends "ecloreuserBundle::page_lambda.html.twig" %}
+
+{% block title %}Espace membre{% endblock %}
+
+{%set color='vert'%}
+{%set first='Mon Éclore'%}
+{%set second='Espace personnel'%}
+
+{% block content %}
+{%include "ecloreuserBundle::menu_user.html.twig"%}
+<div class="coldroite projets">
+<h1> Mes projets </h1>	
+{% if app.user.assoM.managedProjects|length > 0 %}
+    {% for proj in app.user.assoM.managedProjects %}
+    <ul> 
+        <li >  
+            <div class="wrapper_el_projets">
+            <a href=""  class="expandlink" onclick="return false">
+                <div class="projet_el_liste_haut">
+                    <div class="hautgauche"> <img src="{{ asset('bundles/ecloreuser/images/projets/proj1.png') }}"></img></div> 
+                    <div class="hautdroit"> <h2> <span>{{proj.projectName}} ({{proj.getPAByStatus('PENDING')|length + (proj.isFinished ? proj.getPAByStatus('VALIDATED')|length : 0)}} notifications)</span>  </h2>
+                    <span class="soustitre"> <span>{{proj.getDuration}} jours, </span> <span>{{proj.address}}</span></br>
+                    <span>{{proj.shortDescription}}</span> 
+                    </div>
+                </div>
+                <div class="projet_el_liste_bas">
+                    <span>{{proj.description}}</span>
+                </div>
+            </a>
+            </div>
+            <a href="{{ path('assom_editProject', { 'id': proj.id }) }}"> Modifier ce projet </a> - <a href="{{ path('assom_manageProject', { 'id': proj.id }) }}"> Manager les candidatures </a>
+        </li> 
+    </ul>
+    {%endfor%}
+{%else%}
+Pas de projets pour l'instant...<a href="{{ path('assom_registerProject') }}"> Créer un projet! </a>
+{%endif%}
+</div>	
+{% endblock %}

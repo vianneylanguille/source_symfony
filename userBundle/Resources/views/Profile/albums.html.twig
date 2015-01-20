@@ -1,0 +1,32 @@
+{% extends "ecloreuserBundle::page_lambda.html.twig" %}
+
+{% block title %}Espace membre{% endblock %}
+
+{%set color='vert'%}
+{%set first='Mon Éclore'%}
+{%set second='Espace personnel'%}
+
+{% block content %}
+{%include "ecloreuserBundle::menu_user.html.twig"%}
+<div class="coldroite">
+Vos albums photo<br>
+
+{%if app.user.albums|length>0 %}
+    {%for album in app.user.albums %}
+        <div style='border:1px dashed grey;'>{{album.name}} ({{album.pictures|length}} photos)<br>
+        <a href="{{ path('user_removealbum', { 'id': album.id }) }}">Supprimer l'album</a>
+        {%if album.pictures|length > 0 %}
+            {%for pic in album.pictures %}
+                <img src="{{app.request.basepath}}/{{ pic.getWebPath }}" width='500'>
+                <a href="{{ path('user_removepic', {'id': pic.id }) }}">Supprimer</a>
+            {%endfor%}
+        {%endif%}
+        </div>
+    {%endfor%}
+{%else%}
+    Vous n'avez pas d'albums.
+{%endif%}
+<a href="{{ path('user_createalbum') }}">Créer un album</a>
+</div>
+<div class="clearboth"></div>
+{% endblock %}

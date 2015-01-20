@@ -1,0 +1,375 @@
+article {
+	padding-top:2em ;
+}
+
+/* -------------------------------------------------------------------------------------------------------------------  */
+/* -------------------------------style for the project part------------------------------------------------------  */
+/* -------------------------------------------------------------------------------------------------------------------  */
+#projet  h2{
+	background:url('../../images/separation_bleu.png') no-repeat; 
+	color: #006268;
+	height:3em;
+	margin:auto;
+	text-align:center;
+	background-position: 50% 2em;
+	background-size: 50% 0.1em;
+}
+
+#inscription{
+	height:27%;
+	margin:auto;
+	text-align:center;
+	width:39%;
+	position:relative;
+	left:0;
+	padding-left: 5em ;
+	padding-top:2em ;
+	display:inline-block;
+	vertical-align: top;
+}
+
+#recherche {
+	height:15em;
+	margin:auto;
+	text-align:center;
+	width:39%;
+	position:relative;
+	right:-8%;
+    padding-right: 0 ;
+	padding-top:2em ;
+	display:inline-block;
+		vertical-align: top;
+}	
+
+#derniersprojets {
+	height:30em;
+	margin:auto;
+	text-align:center;
+	width:100%;
+	top: -10%;
+	position:relative;
+	left:0%;
+}	
+
+#boutoninscription {
+	background:url('../../images/bouton_bleu.png') no-repeat; 
+	background-size : 70% 3em ; 
+	background-position : 50% 0.4em ;
+	display: block;
+	width: 80% ; 
+	margin:auto ;
+	height: 8em;
+	padding: 1em 0% 0% 0% ; 
+	margin-top: 0.5em;
+	text-decoration: none ;
+	position: absolute;
+		color: #006268;
+	z-index:20;
+}
+
+#boutoninscription a {
+	color: #006268;
+	font-size : 1.4em;
+	margin-bottom: 0.5em;
+	height:2em;
+	display : block;
+}
+
+
+
+/*
+#carousel {
+padding : 0% 10% 0% 10% ;
+width: 80% ;
+}
+
+
+*/
+
+
+
+.projetcarousel{
+	padding: 0em 0 0em 0;
+	width: 85%;
+	margin: auto;
+	position: relative;
+}
+
+
+
+
+/* ------------------------- Style for element of the carousel ------------------------*/
+
+.elprojetcarousel{
+	background-color: #006268; 
+	color: #fff;
+	margin-left: 1em  ; 
+	margin-right: 1em  ; 
+	padding:1em;
+	border : plain ;
+	display: block ;
+	height:15em;
+	width: 15em;
+	float:left;
+	border: 1px solid #ccc;
+	font-size : 1em;
+	border-radius : 5px;
+
+}
+
+.elprojet_haut img:first-of-type{
+	width: 30% ;
+	margin:2%;
+}
+
+.elprojet_haut img:nth-child(3){
+	width:100% ;
+	margin:2%;
+	height:0.2em;
+}
+
+.elprojet_haut div{
+	display: inline-block; 
+	width: 42% ;
+	margin:3%;
+	vertical-align : top;
+	
+	padding-left:5% ;
+}
+
+.elprojet_haut ul {
+    list-style-type: none;
+    margin: 0px;
+		padding-left:0 ;
+			padding-top: 1em;
+	
+}
+
+.elprojet_haut ul li {
+    background-image: url(../../images/flechedroite.png);
+	background-size: 10px 10px;
+    background-repeat: no-repeat;
+    background-position: 0px 0.3em;
+	padding-left:20%;
+}
+
+.elprojetcarousel h3 {
+margin-top: 0;
+text-align : center;
+}
+
+
+/* ------------------------- Style for the carousel ------------------------*/
+
+a.prev, a.next {
+	width: 10%;
+	height: 3em;
+	display: block;
+	position: absolute;
+	top: 6.8em;
+		z-index:10;
+
+}
+
+
+a.prev{
+	background: url(../../images/flechegauche.png) no-repeat transparent;
+		background-size:50% 83% ;
+	left:-5%;
+}
+
+a.next{
+	background: url(../../images/flechedroite.png) no-repeat;
+	background-size:50% 83% ;
+	right:-10%;
+}
+
+a.prev.disabled, a.next.disabled {
+	cursor: default; 
+	background-position: -10em 0em;
+}
+
+a.prev span, a.next span {
+	display: none;
+}
+
+.clearfix {
+	float: none;
+	clear: both;
+}
+
+
+/* -------------------------------------------------------------------------------------------------------------------  */
+/* ----------------------Css pour la partie réseau-----------------------------------------------------------------  */
+/* -------------------------------------------------------------------------------------------------------------------  */
+
+
+#actualite {
+	background: url(../../images/souligne_orange.png) no-repeat transparent;
+	background-size: 61% 3%;	
+	background-position : 0 5em;
+	position:relative; 	
+	width: 49%;
+	height:47%;
+	padding-left:2%;
+	z-index:30;
+	top : -3%;
+}
+
+#actualite h2 {
+margin-bottom : 2em;
+}
+#actualite h3 {
+font-size:1.1em;
+}
+.img_elactualite {
+	float:left ;
+	width : 15%;
+	min-width: 20px;
+	position: relative;
+	top: 0;
+	margin-right: 2em;
+}
+.sep_elactualite {
+	height: 3px;
+	right: 80%;
+}
+#actu1 .img_elactualite {
+	background: url(../../images/actus/icone_actu1.jpg) no-repeat transparent;	
+		background-size: 100% 100%;
+}
+#actu2  .img_elactualite {
+	background: url(../../images/actus/icone_actu2.jpg) no-repeat transparent;	
+		background-size: 100% 100%;
+}
+#actu3  .img_elactualite {
+	background: url(../../images/actus/icone_actu3.jpg) no-repeat transparent;	
+		background-size: 100% 100%;
+}
+
+.elactualite  div a{
+	display: block;
+		position : absolute;
+		right: 5%;
+		z-index : 30 ;
+	
+}
+
+.elactualite  div{
+	height:25%;
+	width : 100%;
+	position : relative ;
+	z-index : 20 ;
+	}
+
+.elactualite {
+	position: relative;
+	padding-bottom:0;
+	width: 85%;
+	padding-left:0em;
+	overflow : hidden;
+	z-index : 19 ;
+}
+
+
+#focus{
+	background: url(../../images/cadre_image_orange.png) no-repeat transparent; 
+	background-size:100% 100%;
+	width: 48.5%;
+	right : 3%;
+	height: 280px ;
+	position: absolute;
+	top : 140px;
+	padding-top:0;
+}
+
+#focuscarousel {
+	width: 97.7%;
+	height: 283px;
+	position: relative;
+	top : 12px;;
+	left: 1.5%;
+	overflow:hidden;
+}
+
+.filactu{
+	background: url(../../images/cadre_image_orange.png) no-repeat transparent; 
+	background-size:100% 100%;
+	background-position : 0 10%;
+	width:23%;
+	right : 3%;
+	height: 21% ;
+	position: absolute;
+	top:425px;
+	color: rgb(127,30,25);
+
+}
+
+
+.elfoccarousel{
+	position: relative;
+}	
+.elfoccarousel img {
+	margin-left:2%;
+		margin-right:2%;
+	left: 5%;
+	width: 96%;
+	height: 270px;
+	top:10px
+}
+
+.elfoccarousel_banner{
+	background-color: rgba(234,117,20, 0.8);
+	width:34%;
+	padding:1em;
+	display: block;
+	position: absolute;
+	bottom: 20px;
+	height:3em ;
+	right: 4%;
+	color:#fff;
+}
+/* -------------------------------------------------------------------------------------------------------------------  */
+/*------------ Css pour la présentation d'Eclore ----------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------  */
+
+#videopres {
+margin: auto ;
+width: 60%;
+background-color: rgba(20,20,20,0.8);
+height:36%;
+border-radius:3px;
+}
+
+#presasso {
+width : 90% ;
+height: 40% ;
+margin: auto;
+}
+
+.presasso_el {
+display : inline-block ;
+vertical-align :top;
+width: 29% ;
+margin-left: 2% ;
+margin-right: 2% ;
+height: 100% ;
+font-size:1.3em;
+}
+
+.presasso_el img{
+display : block ;
+margin : 5% ; 
+float :left ;
+width: 15%;
+}
+
+
+
+
+
+
+
+
+
+

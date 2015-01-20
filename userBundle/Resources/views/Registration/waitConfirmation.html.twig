@@ -1,0 +1,11 @@
+{% extends "ecloreuserBundle::layout.html.twig" %}
+
+{% block title %}Espace membre{% endblock %}
+
+{% block fos_user_content %}
+Bienvenue {{app.user.username}} !<br>
+Vuos venez d'enregistrer votre profil.
+<br>
+Une fois que l'équipe du réseau l'aura validé, vous aurez accès à l'ensemble des fonctionnalités du user.
+<br> Un email vous sera envoyé dès que votre profil aura été validé.
+{% endblock fos_user_content %}

@@ -1,0 +1,10 @@
+{% block subject %}
+Confirmation d'inscription
+{% endblock %}
+
+{% block body_html %}
+Bonjour {{user.username}},<br><br>
+Merci de cliquer sur <a href='{{confirmationUrl}}'>ce lien</a> pour confirmer votre inscription!
+<br><br>
+L'équipe du Réseau Eclore
+{% endblock %}

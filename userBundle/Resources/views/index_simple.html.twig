@@ -1,0 +1,109 @@
+{% extends "ecloreuserBundle::page_lambda.html.twig" %}
+
+{% block title %}Réseau Eclore !{% endblock %}
+
+{%set color='vert'%}
+{%set first='Bienvenue !'%}
+
+{% block content %}
+<div id="menugauche"> 
+		
+        
+    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+		<ul> <a href="{{ path('ecloreuser_home') }}"> <li class="menugauche_el1"> Mon espace </li>  </a></ul>
+    {%else%}
+		<ul> <a href="{{ path('fos_user_security_login') }}"> <li class="menugauche_el5"> Je me connecte !</li>  </a></ul>
+        <ul> <a href="{{ path('fos_user_registration_register') }}"> <li class="menugauche_el6"> Je m'inscris ! </li>  </a></ul>
+    {%endif%}
+	
+
+	
+	
+</div>
+
+
+
+
+<div class="coldroite">
+
+    <h1> Bienvenue sur le réseau Éclore ! </h1>
+    Ce site est appelé à grandir dans les semaines qui viennent mais vous pouvez d'ores et déjà vous inscrire et déposer des projets. 
+
+        <ul> 
+            <li >  
+                <div class="wrapper_el_projets">
+                <a href=""  class="expandlink" onclick="return false">
+                    <div class="projet_el_liste_haut">
+                        <div class="hautgauche"> <img src="/bundles/ecloreuser/images/exovo_etude.png"></img></div> 
+                        <div class="hautdroit"> <h2> <span> Qui sommes-nous ? </span>  </h2>
+                        <span class="soustitre"> <span> Des jeunes convaincus de la valeur de l'engagement associatif ! </span> </span></br>
+                        
+                        </div>
+                    </div>
+                    <div class="projet_el_liste_bas">
+                        <span>Nous sommes 6 jeunes bénévoles d'environ 25 ans, étudiants, jeunes professionnels, passés par des associations
+            variées qui nous ont fait confiance et convaincus que cela a été une chance pour notre propre parcours. 
+            Nous apportons ainsi nos différentes expériences au réseau Éclore pour partager cette chance avec tous les jeunes. </span>
+                    </div>
+                </a>
+                </div>
+            
+            </li> 
+        </ul>
+        <ul> 
+            <li >  
+                <div class="wrapper_el_projets">
+                <a href=""  class="expandlink" onclick="return false">
+                    <div class="projet_el_liste_haut">
+                        <div class="hautgauche"> <img src="/bundles/ecloreuser/images/exovo_reseau.png"></img></div> 
+                        <div class="hautdroit"> <h2> <span> A qui s'adresse le réseau Éclore ? </span>  </h2>
+                        <span class="soustitre"> <span> Aux associations voulant impliquer des jeunes dans leur action et aux jeunes souhaitant s'engager dans le monde associatif. </span> </span></br>
+                        
+                        </div>
+                    </div>
+                    <div class="projet_el_liste_bas">
+                        <span>                          Le réseau s’adresse à la fois aux associations qui souhaitent impliquer dans 
+                leurs projets de jeunes bénévoles, et aux jeunes souhaitant s’engager dans
+            le milieu associatif. Il vise à mettre en relation des 
+            jeunes et des projets associatifs locaux, afin de promouvoir 
+            l’engagement bénévole dans la société civile et de développer les liens entre les
+            associations et les nouvelles générations.</span>
+                    </div>
+                </a>
+                </div>
+            
+            </li> 
+        </ul>
+        <ul> 
+            <li >  
+                <div class="wrapper_el_projets">
+                <a href=""  class="expandlink" onclick="return false">
+                    <div class="projet_el_liste_haut">
+                        <div class="hautgauche"> <img src="/bundles/ecloreuser/images/exovo_curieux.png"></img></div> 
+                        <div class="hautdroit"> <h2> <span> Y a-t-il des contraintes ? </span>  </h2>
+                        <span class="soustitre"> <span> Seulement celles de respecter notre charte et de croire en la jeunesse. </span> </span></br>
+                        
+                        </div>
+                    </div>
+                    <div class="projet_el_liste_bas">
+                        <span>Toute association engagée dans un projet vers les autres, de même que 
+            tout jeune désireux de s’engager dans un tel projet, peut s’inscrire 
+            au réseau Éclore, si elle ou il adhère à la charte et aux valeurs du 
+            réseau.</span>
+                    </div>
+                </a>
+                </div>
+            
+            </li> 
+        </ul>
+
+
+</div>
+
+	<div class="colgauche lienrezo">
+			<a href="http://www.facebook.com/reseau.eclore" target="_blank"> <img  src="/bundles/ecloreuser/images/icone_fb.png" alt="Lien Facebook">  </a>
+			<a href="https://twitter.com/ResEclore" target="_blank"> <img  src="/bundles/ecloreuser/images/icone_twitter.png" alt="Lien Twitter"> </a>
+			<a href="http://reseau-eclore.tumblr.com/" target="_blank"> <img src="/bundles/ecloreuser/images/icone_tumblr.png" alt="Lien Tumblr"> </a>
+		</div>
+
+{% endblock %}

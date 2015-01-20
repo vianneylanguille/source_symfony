@@ -1,0 +1,372 @@
+
+/*  -------------------------------------- ---------------------------------------------------------------------------------------------------------- */
+/*  --------------------------------------   CSS pour le formulaires  d'inscription --------------------------------------------------------------------- */
+/*  --------------------------------------   ----------------------------------------------------------------------------------------------------- */
+.coldroite #fos_user_registration_form  div {
+min-height: 2em;
+display:inline-block;
+vertical-align:top;
+margin-bottom: 1em;
+}
+.coldroite   input {
+background-color : #60912c ;
+width:90%;
+margin-right:5%;
+color: #fff;
+/*border-radius : 5px;*/
+height: 2.2em;
+margin-top:1em;
+margin-bottom:1em;
+font-size:1em;
+box-shadow:1px 1px 2px 1px #ccc;
+padding-left:5%;
+}
+
+.coldroite   input:focus,  select:focus,  button:focus {
+background-color : #679C2F ; 
+}
+
+.coldroite    input:hover{
+background-color : #679C2F ; 
+box-shadow:1px 1px 4px 2px #ccc;
+}
+.coldroite    select:hover{
+background-color : #679C2F ; 
+}
+.coldroite    button:hover{
+background-color : #679C2F ; 
+}
+
+.coldroite form {
+margin-top:1em;
+}
+.coldroite   select {
+background-color : #60912c ;
+margin-right:5%;
+color: #fff;
+/*border-radius : 5px;*/
+height: 2.2em;
+margin-top:1em;
+margin-bottom:0.5em;
+padding-top:0.2em;
+font-size:1em;
+box-shadow:1px 1px 2px 1px #ccc;
+padding-left:1%;
+}
+
+.coldroite  button {
+background-color :#679C2F;
+margin-right:5%;
+color: #fff;
+/*border-radius : 5px;*/
+height: 2em;
+padding-top:0.2em;
+font-size:1em;
+box-shadow:1px 1px 2px 1px #ccc;
+padding:auto;
+}
+
+.coldroite textarea {
+margin-top:1em;
+}
+
+.coldroite form  {
+font-size:1em;
+}
+
+/* -----Modification de la couleur du texte du placeholder pour les différents utilisateurs. ----  */
+
+.page_content ::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #fff;
+}
+.page_content :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #fff;
+    opacity:  1;
+}
+.page_content ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #fff;
+    opacity:  1;
+}
+.page_content :-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #fff;
+}
+
+/* -----La taille des différents éléments ----  */
+
+
+
+
+
+#fos_user_registration_form  div:nth-last-child(11)  {
+width:60%;
+}
+#fos_user_registration_form  div:nth-last-child(10)  {
+width:39%;
+}
+#fos_user_registration_form  div:nth-child(3)  {
+width:49%;
+margin-bottom:3em;
+}
+#fos_user_registration_form  div:nth-child(4)  {
+width:49.4%;
+margin-bottom:3em;
+}
+#fos_user_registration_form  div:nth-child(5)  {
+width:100% ;
+}
+#fos_user_registration_form  div:nth-child(6)  {
+width:39% ;
+}
+#fos_user_registration_form  div:nth-child(7)  {
+width:59.45% ;
+}
+#fos_user_registration_form  div:nth-child(8)  {
+width:75% ;
+}
+#fos_user_registration_form_birthDate{
+width:90% ;
+}
+
+#fos_user_registration_form_birthDate  select {
+width:27.3%;
+}
+
+#fos_user_registration_form  div:nth-child(9)  {
+width:100% ;
+}
+#fos_user_registration_form_privacyLevel {
+width:81% ;
+}
+
+#fos_user_registration_form  div:nth-child(10)  {
+width:100% ;
+}
+
+.coldroite form>div:nth-child(2) {
+display:block;
+width:40% ;
+margin:auto;
+}
+
+
+/* -----La partie création d'instiution ----  */
+
+#eclore_user_instedittype_headshot_file{
+ width:60%;
+ margin-left: 5em;
+}
+
+
+#fos_choix_type_membre{
+margin-left: 2em;
+width:20em;
+}
+
+/*  -------------------------------------- ---------------------------------------------------------------------------------------------------------- */
+/*  --------------------------------------   CSS pour le formulaire de création/edition de nouveaux projets--------------------------------------------------------------------- */
+/*  --------------------------------------   ----------------------------------------------------------------------------------------------------- */
+
+#fos_user_register_project_form>div {
+padding: 1em;
+display:inline-block;
+}
+
+#fos_user_register_project_form>div:nth-child(2) {
+width:45%;
+}
+#fos_user_register_project_form>div:nth-child(1) {
+width:45%;
+}
+#fos_user_register_project_form>div:nth-child(3) {
+width:100%;
+}
+
+#fos_user_register_project_form>div:nth-child(5) {
+width:100%;
+}
+#fos_user_register_project_form>div:nth-child(6) {
+width:100%;
+}
+#fos_user_register_project_form>div>div {
+height:1.5em;
+padding-top:0.5em;
+}
+
+textarea {
+width:100%;
+min-height : 10em;
+font-family: "Constantia";
+}
+
+eclore_userbundle_projectregistertype_shortDescription {
+min-height:5em;
+}
+
+#eclore_userbundle_projectregistertype_address {
+width:50%;
+margin-left: 1em !important;
+margin-bottom:0 !important;
+margin-top:1em !important;
+}
+
+#eclore_userbundle_projectregistertype_save {
+width:40%;
+margin-left:30%;
+margin-top:1em;
+margin-bottom:2em;
+
+}
+
+#eclore_userbundle_projectregistertype_association {
+width:40%;
+}
+
+#eclore_userbundle_projectregistertype_labels {
+width:40%;
+}
+
+.coldroite #map {
+width:95%;
+border-radius:5px;
+box-shadow:1px 1px 2px 1px #ccc;
+}
+
+
+#eclore_userbundle_projectregistertype_required {
+	width: 4em;
+	margin-left:2em;
+}
+
+
+
+/*  -------------------------------------- ---------------------------------------------------------------------------------------------------------- */
+/*  --------------------------------------   CSS pour le formulaire de modification des infos persos--------------------------------------------------------------------- */
+/*  --------------------------------------   ----------------------------------------------------------------------------------------------------- */
+
+
+.fos_user_profile_form div {
+width: 100%;
+}
+
+.fos_user_profile_edit input {
+width:50%;
+margin-left:2em;
+display:block;
+}
+
+#fos_user_profile_form_quality {
+width:83%;
+}
+
+/*  -------------------------------------- ---------------------------------------------------------------------------------------------------------- */
+/*  --------------------------------------   CSS pour la connection--------------------------------------------------------------------- */
+/*  --------------------------------------   ----------------------------------------------------------------------------------------------------- */
+
+#remember_me {
+width: 1em;
+padding : 0;
+height:1em ;
+margin : 0;
+
+margin-right:1em;
+}
+#username, #password {
+margin-top:0em;
+width: 24%;
+display:block;
+}
+#_submit{
+margin-top:1em;
+margin-left:1em;
+width: 25%;
+}
+
+
+/*  -------------------------------------- ---------------------------------------------------------------------------------------------------------- */
+/*  --------------------------------------   CSS pour le formulaire de définition/édition du type de profil--------------------------------------------------------------------- */
+/*  --------------------------------------   ----------------------------------------------------------------------------------------------------- */
+
+#defprofil form>div {
+padding-top:2em;
+}
+
+#defprofil label {
+display:block;
+margin-bottom:0.5em;
+}
+
+#defprofil input {
+width: 100%;
+margin-left:1em;
+margin-bottom:0.5em;
+}
+#defprofil select {
+width: 100%;
+margin:0;
+margin-left:1em;
+}
+#defprofil button {
+margin-top:2em;
+display:block;
+margin-left:40%;
+}
+
+li.search-field input.default{
+width: auto !important;
+}
+
+/* 
+.chosen-container
+{
+    width: 100% !important;
+}
+*/
+
+
+/*  -------------------------------------- ---------------------------------------------------------------------------------------------------------- */
+/*  --------------------------------------   CSS pour le formulaire de création/edition d'un profil d'asso--------------------------------------------------------------------- */
+/*  --------------------------------------   ----------------------------------------------------------------------------------------------------- */
+
+
+.coldroite.creerasso input {
+width: 40%;
+margin-left:1em;
+margin-bottom:1em;
+}
+.coldroite.creerasso select {
+width: 25%;
+margin:0;
+margin-left:1em;
+margin-bottom:1em;
+}
+.coldroite.creerasso button {
+margin-top:1em;
+display:block;
+margin-left:25%;
+width:50%;
+}
+
+.coldroite.creerasso textarea {
+margin-bottom:2em;
+min-height:3em;
+}
+
+#eclore_user_assocreatetype_description{
+
+min-height: 20em;
+}
+
+#eclore_user_assocreatetype_adresse{
+min-height: 3em;
+width:100%;
+}
+
+/*  -------------------------------------- ---------------------------------------------------------------------------------------------------------- */
+/*  --------------------------------------   CSS pour le formulaire de changement de mot de pass--------------------------------------------------------------------- */
+/*  --------------------------------------   ----------------------------------------------------------------------------------------------------- */
+
+#fos_user_change_password_form div input{
+display:block;
+width:30%;
+margin-left : 2em;
+}

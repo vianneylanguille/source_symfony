@@ -1,0 +1,96 @@
+﻿{%if form is defined %}
+{% form_theme form 'ecloreuserBundle:Form:fields.html.twig' %}
+{%endif%}
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{%block title%}{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('bundles/ecloreuser/css/lambda/menu.css')}}" type="text/css" />
+        <link rel="stylesheet" href="{{ asset('bundles/ecloreuser/css/lambda/lambda.css')}}" type="text/css" />
+	 <link rel="stylesheet" href="{{ asset('bundles/ecloreuser/css/lambda/footer.css')}}" type="text/css" />
+        <link rel="stylesheet" href="{{ asset('bundles/ecloreuser/css/lambda/form.css')}}" type="text/css" />
+	<link rel="stylesheet" href="{{ asset('bundles/ecloreuser/js/lambda/chosen/jquery-ui.min.css')}}" type="text/css" />
+	<link rel="stylesheet" href="{{ asset('bundles/ecloreuser/js/lambda/chosen/chosen.min.css')}}" type="text/css" />
+  </head>
+  <body>
+        <script src="{{ asset('bundles/ecloreuser/js/lambda/jquery.min.js')}}"> </script>
+        <script src="{{ asset('bundles/ecloreuser/js/lambda/jquery.easing.min.js')}}"> </script>
+        <script src="{{ asset('bundles/ecloreuser/js/lambda/anim_lambda.js')}}"> </script>
+        <script src="{{ asset('bundles/ecloreuser/js/lambda/anim_menu.js')}}"> </script>
+	<script src="{{ asset('bundles/ecloreuser/js/lambda/chosen/jquery-ui.min.js')}}"> </script>
+	<script src="{{ asset('bundles/ecloreuser/js/lambda/chosen/chosen.jquery.min.js')}}"> </script>
+	<div style="position:relative; min-height:100%;">
+      <header id="menuhaut" style="width:100%" style="z-index:100;">   
+		
+<!--	{% block menu %} {% endblock %} -->
+
+	
+		<div class='bandeau_haut'>
+			<img src='{{ asset("bundles/ecloreuser/images/bandeau_haut.jpg")}}' class='bandeau'>
+			<img src='{{ asset("bundles/ecloreuser/images/fondu_image_chapeau.png")}}' id='fonduimg'>
+			<div class="menu {{color}}" style='position:absolute; top : 63%; width:80% ;'>
+				{% include 'ecloreuserBundle::menu.html.twig' %}	
+			</div>
+		</div>
+
+			<a href="/" class='logo'><img src='{{ asset("bundles/ecloreuser/images/logo.png")}}'></a>
+	
+
+	</header>
+  
+	<div id="tamponmenu"> </div>
+
+ 
+    <div class='page'>
+        <div class='page_chapeau'>
+            <img src='{{ asset("bundles/ecloreuser/images/chapeau_contenu_"~color~".png")}}' class='chapeau'>
+            <div class='chapeau_texte'>
+                <img src='{{ asset("bundles/ecloreuser/images/symbole_eclore.png")}}' class='symbole_eclore'>
+                <span class='chapeau_texte'>{{first}}</span>
+                {%if second is defined %}
+                <img src='{{ asset("bundles/ecloreuser/images/flechedroite.png")}}' class='fleche_gauche'>
+                <span class='chapeau_texte'>{{second}}</span>
+                {%endif%}
+				
+            </div>
+        </div>
+        <div class='page_content'>
+        	<div id="infobulle"> 
+			
+            {% for key, messages in app.session.flashbag.all() %}
+                        {% for message in messages %}
+                            <div class="alert-{{ key }}">{{ message|trans({}, 'FOSUserBundle') }}</div>
+                        {% endfor %}
+                    {% endfor %} 
+            </div>
+
+                    {%block content %}
+                    {%endblock%}
+		
+      </div>
+    </div>
+    <div id='menu_bas'></div>
+	
+	
+	<footer class="{{color}}">
+		<a href="https://plus.google.com/u/0/108771494758848918220?
+		rel=author" style="display:hidden;"></a>
+		
+			<ul>
+					<li> <h3> <a href="{{path('ecloreuser_sitemap')}}"> Plan du site </a> </h3> 		
+					<li> <h3><a href="#">Mentions légales</a>  </h3>					 
+					</li>
+					<li> <h3> <a href="{{path('ecloreuser_statuts')}}">Nos statuts</a>   </h3>					
+					</li>
+			        <li><h3> <a href="mailto:contact@reseau-eclore.org">Nous contacter</a>  </h3>				
+					</li>
+				</ul>			
+	</footer>
+	 
+        <script src="{{ asset('bundles/ecloreuser/js/lambda/jquery.carouFredSel-6.2.1-packed.js')}}" type="text/javascript"></script>
+
+	
+	</div>
+  </body>
+</html>

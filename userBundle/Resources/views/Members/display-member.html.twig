@@ -1,0 +1,40 @@
+{% extends "ecloreuserBundle::page_lambda.html.twig" %}
+
+{% block title %}Espace membre{% endblock %}
+{%set color='vert'%}
+{%set first='Mon Éclore'%}
+{%set second='Espace personnel'%}
+
+
+{% block content %}
+<div id="menugauche"> 
+
+<img src="{{app.request.basepath}}/{{u.getHeadshotWebPath }}" width='100%'>
+
+</div>
+<div class="coldroite"> 
+	<h1>{{u.username}}</h1>
+{%if u in app.user.contacts and u.privacyLevel != 2 %}
+		<div class="soustitre">  {{u}}, {{u.age}} ans, téléphone: {{u.mobile}},   email: {{u.email}}</div>
+		{% if u.hasRole('ROLE_ASSOM') %}
+			Fonction: {{u.assoM.quality}}<br>
+			Associations: {{u.assoM.associations|join(', ')}}<br>
+		{%elseif u.hasRole('ROLE_INSTM') %}
+			Fonction: {{u.instM.quality}}<br>
+			Institutions: {{u.instM.institutions|join(', ')}}<br>
+		{%elseif u.hasRole('ROLE_YOUNG') %}
+			Institutions: {{u.young.institutions|join(', ')}}<br>
+		{%endif%}
+	{%elseif contactRequested %}
+    Vous avez déjà envoyé une demande de contact à cette utilisateur.
+{%else%}
+    <a href="{{ path('user_send_contactNot', {'id':u.id})}}">Envoyer une demande de contact</a>
+{%endif%}
+	
+</div>
+{% endblock %}
+
+
+
+
+

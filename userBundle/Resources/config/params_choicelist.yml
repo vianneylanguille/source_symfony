@@ -1,0 +1,22 @@
+parameters:
+    PAStatus:
+        PENDING: 'En attente de validation'
+        VALIDATED: 'Validée'
+        REJECTED: 'Rejetée'
+        TERMINATED: 'Clôturée'
+        MARKED: 'Avis jeune enregistré'
+        
+    Notification:
+        MARK: 'Avis jeune'
+        CONTACT: 'Demande de contact'
+        RECOMMENDATION: 'Recommandation'
+        
+    privacyLevels:
+        0: 'Tout le monde peut voir mon profil réduit, mais pas mes activités'
+        1: 'Mes contacts peuvent voir mon profil complet et mes activités'
+        2: 'Invisible'
+        
+    investmentRequired:
+        1: 'Week-end seulement'
+        0: 'Soirs de semaine et Week-end'
+        2: 'Jours de semaine et WE'

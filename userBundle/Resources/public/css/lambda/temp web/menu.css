@@ -1,0 +1,123 @@
+
+.menu
+{
+ width:100%; 
+ height:3.7em;
+ margin:0em 0 0 0px ; 
+ left: -2px;  
+color:#fff;
+z-index:300;
+}
+
+.menu.bleu {
+ background: url("../../images/menu_fond_bleu.png") no-repeat  0 0 / 100% 3.7em ;
+}
+.menu.vert {
+ background: url("../../images/menu_fond_vert.png") no-repeat  0 0 / 100% 3.7em ;
+}
+.menu.orange {
+ background: url("../../images/menu_fond_orange.png") no-repeat  0 0 / 100% 3.7em ;
+}
+
+.menu ul
+{
+    margin:0;
+    padding:0.5em 2em 0 0;
+		
+}
+ 
+.menu a
+{
+	color:#fff;
+	text-decoration: none;
+}
+ 
+.menu h3
+ {
+ 	margin-top:-0em;
+ }
+ 
+.menu li
+{
+    width:15%;
+	padding: 0 0.1em 0 0.1em;
+    height:2.3em;
+    float:left;
+    text-align:center;
+    overflow:hidden;
+	background: url('../../images/fond_sousmenu.png') no-repeat; 
+	position:relative;
+	 border-left:1px solid #fff;
+	z-index:21; 
+}
+
+.menu.bleu li
+{
+	background: url('../../images/fond_sousmenu_bleu.png') no-repeat;
+}
+.menu.vert li
+{
+	background: url('../../images/fond_sousmenu_vert.png') no-repeat;
+}
+.menu.orange li
+{
+	background: url('../../images/fond_sousmenu_orange.png') no-repeat;
+}
+
+.menu li a {
+        /* z-index must be higher than .hover class */
+        z-index:20;                
+        padding-top:0.3em;
+        /* display as block and set the height according to the height of the menu to make the whole LI clickable    */
+        display:block;    
+        height:2.2em;
+		width:100%;
+        position:relative;
+ 
+}
+
+
+.menu li a .hover
+{
+/* mouseover image    */
+    background:url(../../images/fondhover_sousmenu.png) no-repeat center center; 
+	background-size: 100% 100%;
+/* must be postion absolute    */  
+    position:absolute;   
+    opacity:0.8;
+/*    width, height, left and top to fill the whole LI item    */
+    width:100%;    
+    height:2.6em;
+    left:0em;
+    top:-0.4em;    
+        
+/* display under the Anchor tag    */
+    z-index:0;        
+        
+/*hide it by default    */
+    display:none;    
+}
+
+.menu.bleu li a .hover
+{
+    background:url(../../images/fondhover_sousmenu_bleu.png) no-repeat center center; 
+	background-size: 100% 100%;  
+}
+.menu.vert li a .hover
+{
+    background:url(../../images/fondhover_sousmenu_vert.png) no-repeat center center; 
+	background-size: 100% 100%;  
+}
+.menu.orange li a .hover
+{
+    background:url(../../images/fondhover_sousmenu_orange.png) no-repeat center center; 
+	background-size: 100% 100%;  
+}
+
+.sousmenu  span{
+position : absolute ; 
+left:0;
+width:100%;
+z-index : 30;
+
+}

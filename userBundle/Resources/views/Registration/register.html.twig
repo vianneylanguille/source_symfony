@@ -1,0 +1,8 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+<h1> Inscription </h1>
+Bonjour ! Bienvenue sur le réseau Éclore. L'inscription est totalement gratuite 
+et vous permet de candidater ou de déposer des projets associatifs.
+{% include "FOSUserBundle:Registration:register_content.html.twig" %}
+{% endblock fos_user_content %}

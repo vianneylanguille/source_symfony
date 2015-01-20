@@ -1,0 +1,90 @@
+{% extends "ecloreuserBundle::page_lambda.html.twig" %}
+
+{% block title %}Espace membre{% endblock %}
+
+{%set color='vert'%}
+{%set first='Mon Éclore'%}
+{%set second='Espace personnel'%}
+
+{% block content %}
+{%include "ecloreuserBundle::menu_user.html.twig"%}
+<div class="coldroite">
+<h1> Gestion de vos contacts </h1>
+
+{%if contact_not|length>0 %}
+<h2> Demandes de contact à gérer </h2>
+<ul>
+{% for notif in contact_not %}
+    <li>{{notif.initDate|date('d-m-Y')}} de {{notif.sender}}: {{notif.message}} 
+    <a href="{{path('user_acknowledge_contact', {'id' : notif.id, 'action' : 'ack'})}}">Accepter</a>
+    <a href="{{path('user_acknowledge_contact', {'id' : notif.id, 'action' : 'nack'})}}">Refuser</a>
+    </li>
+{% endfor %}
+</ul>
+{%else%}
+
+{%endif%}
+
+{%if app.user.contacts|length>0 %}
+
+{%if app.user.getContactsByRole('ROLE_YOUNG')|length > 0 %}
+
+<h2> Jeunes </h2>
+	{%for contact in app.user.getContactsByRole('ROLE_YOUNG') %}
+	
+	<div class="colquarter contact">
+   <div class="imgtitle"> <img src="{{app.request.basepath}}/{{ contact.getHeadshotWebPath }}" width='80%'> </div>
+	<h3> {{contact|printName}} </h3>
+	{{contact.mobile}}, 
+	{{contact.email}}</br>
+	{{contact.young.institutions|join(', ')}}</br>		
+	<a href="{{path('displayMember', {'id':contact.id})}}">Détails...</a>
+	<a href="{{path('user_removeContact', {'id':contact.id})}}">Supprimer</a>
+	</div>
+
+	{%endfor%}
+
+{%endif%}
+
+
+{%if app.user.getContactsByRole('ROLE_ASSOM')|length > 0 %}
+<h2>  Membres associatifs</h2>
+
+{%for contact in app.user.getContactsByRole('ROLE_ASSOM') %}
+	<div class="colquarter contact">
+   <div class="imgtitle contact"> <img src="{{app.request.basepath}}/{{ contact.getHeadshotWebPath }}" width='80%'> </div>
+	<h3> {{contact|printName}} </h3>
+	{{contact.mobile}}, 
+	{{contact.email}}</br>
+	{{contact.assoM.associations|join(', ')}}</br>		
+	<a href="{{path('displayMember', {'id':contact.id})}}">Détails...</a>
+	<a href="{{path('user_removeContact', {'id':contact.id})}}">Supprimer</a>
+	</div>
+{%endfor%}
+
+{%endif%}
+
+{%if app.user.getContactsByRole('ROLE_INSTM')|length > 0 %}
+<h2> Membres institutionnels </h2>
+
+{%for contact in app.user.getContactsByRole('ROLE_INSTM') %}
+
+	<div class="colquarter contact">
+   <div class="imgtitle "> <img src="{{app.request.basepath}}/{{ contact.getHeadshotWebPath }}" width='80%'> </div>
+	<h3> {{contact|printName}} </h3>
+	{{contact.mobile}}, 
+	{{contact.email}}</br>
+	{{contact.instM.institutions|join(', ')}}</br>		
+	<a href="{{path('displayMember', {'id':contact.id})}}">Détails...</a>
+	<a href="{{path('user_removeContact', {'id':contact.id})}}">Supprimer</a>
+	</div>
+
+{%endfor%}
+
+{%endif%}
+{%else%}
+Pas encore de contacts dans votre annuaire.
+{%endif%}
+</div>
+<div class="clearboth"></div>
+{% endblock %}

@@ -1,0 +1,107 @@
+{% extends "ecloreuserBundle::page_lambda.html.twig" %}
+
+{% block title %}Espace membre{% endblock %}
+
+{%set color='vert'%}
+{%set first='Mon Éclore'%}
+{%set second='Espace personnel'%}
+
+
+{% block content %}
+{%include "ecloreuserBundle::menu_user.html.twig"%}
+<div class="coldroite">
+{% set rejected = proj.PAByStatus('REJECTED') %}
+{% set validated = proj.PAByStatus('VALIDATED') %}
+{% set pending = proj.PAByStatus('PENDING') %}
+
+Bienvenue {{app.user.username}} !<br>
+Vous êtes dans l'espace d'administration du projet {{proj.projectName}}.
+<br>
+
+Nom du projet: {{proj}}<br>
+Description: {{proj.description}}<br>
+Date de début: {{proj.startdate|date("m-d-Y")}}<br>
+Date de fin: {{proj.enddate|date("m-d-Y")}}<br>
+Localisation: {{proj.address}}<br>
+Responsables du projet: {{proj.responsibles|join(', ') }}<br>
+Statut du projet:
+{%if not proj.enabled%}
+    Ce projet est en attente de validation de la part des administrateurs. Vous serez averti de sa validation.
+{%else%}
+
+    {%if proj.isFinished %}
+    Terminé.
+    {%elseif not proj.isFinished and proj.isStarted %}
+    En cours.
+    {%else%}
+    Publié.
+    {%endif%}
+    <br>
+ <a href="{{ path('assom_editProject', { 'id': proj.id }) }}"> Modifier ce projet </a>
+    <br>
+    Statut sur les participants: 
+    {%if not proj.isFinished%}
+        {%if proj.isFull %}Ce projet possède le nombre de participants requis.
+        {%else%}{{proj.required - proj.getPAByStatus('VALIDATED')|length}} participants encore souhaités.
+        {%endif%}
+    {%else%}   
+        Merci de clôturer les candidatures des jeunes ayant participé.<br>
+    {%endif%}
+
+    <br>
+
+    {%if not proj.isFinished%}
+        {% if validated|length >0 %}
+        Candidatures à clôturer:
+            <ul>
+            {% for pa in validated %}
+                <li>{{pa.young}} 
+                <a href="{{ path('assom_manageApplication', { 'id': pa.id }) }}">Clôturer</a></li>
+            {% endfor %}
+            </ul>
+        {% else %}
+        Pas de candidatures à clôturer
+        {% endif %}
+    {%else%}
+        {% if pending|length >0 %}
+        <br>
+        Candidatures à traiter:
+            <ul>
+            {% for pa in pending %}
+                <li>{{pa.young}} <a href="{{ path('assom_manageApplication', { 'id': pa.id }) }}">Manager</a></li>
+            {% endfor %}
+            </ul>
+        {% else %}
+        Pas de candidatures à traiter.
+        {% endif %}
+        <br>
+        {% if validated|length >0 %}
+        Candidatures validées:
+            <ul>
+            {% for pa in validated %}
+                <li>{{pa.young}} 
+                <a href="{{ path('assom_manageApplication', { 'id': pa.id }) }}">Manager</a></li>
+            {% endfor %}
+            </ul>
+        {% else %}
+        Pas de candidatures validées.
+        {% endif %}
+        <br>
+        {% if rejected|length >0 %}
+        Candidatures rejetées:
+            <ul>
+            {% for pa in rejected %}
+                <li>{{pa.young}} <a href="{{ path('assom_manageApplication', { 'id': pa.id }) }}">Manager</a></li>
+            {% endfor %}
+            </ul>
+        {% else %}
+        Pas de candidatures rejetées.
+        {% endif %}
+        <br>
+    Si vous souhaitez modifier ce projet, le supprimer, ou ajouter des responsables, merci de contacter le réseau à webmaster@reseau-eclore.org
+    {%endif%}
+
+{%endif%}
+</div>
+<div class="clearboth"></div>
+{% endblock %}

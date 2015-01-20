@@ -1,0 +1,56 @@
+{% extends "ecloreuserBundle::page_lambda.html.twig" %}
+
+{% block title %}Rechercher un projet{% endblock %}
+
+{%set color='vert'%}
+{%set first='Les projets'%}
+{%set second='Rechercher un projet'%}
+
+
+{% block content %}
+ceci est la page de recherche des projets<br>
+<div id='loading'>Chargement en cours...
+    <img src="{{ asset('bundles/ecloreuser/images/ajax-loader.gif') }}"/>
+</div>
+
+<div id='search_zone' style='display:none;'>
+    Filtrer par label:
+    <select id='label_select' multiple='multiple' data-placeholder="Labels..." style='width:10em''>
+    </select>
+    <br>
+    Filtrer par association:
+    <select id='association_select' multiple='multiple' data-placeholder="Associations..." style='width:10em'>
+    </select>
+    <br>
+    Trier:
+    <select id='tri' data-placeholder="Trier...">
+        <option value="project_name+">Nom: croissant</option>
+        <option value="project_name-">Nom: décroissant</option>
+        <option value="duration+">Durée: croissant</option>
+        <option value="duration-">Durée: décroissant</option>
+        <option value="start_date+">Date de début: croissant</option>
+        <option value="start_date-">Date de début: décroissant</option>
+        <option value="end_date+">Date de fin: croissant</option>
+        <option value="end_date-">Date de fin: décroissant</option>
+    </select>
+    <br>
+    <div id='results' class='projets'>
+    </div>
+</div>
+<br>
+<input type='text' id='loc'><input type='button' id='loc_submit' value='chercher'><br>
+<div id="map-canvas" style="width:800px;
+ height:300px;
+ border:1px solid grey;"/>
+ 
+ <script type="text/javascript">
+ var url = "{{path('ecloreuser_rechercherProjet')}}"
+ var voirProjetUrl = "{{path('show_project',{'id':0})}}"
+ var logoProjet = "{{asset('bundles/ecloreuser/images/projets/proj1.png')}}"
+</script>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLfY0Ipd6nAQNg2sk8h9G4oeNltMGhoCI&sensor=true"></script>
+
+<script src="{{ asset('bundles/ecloreuser/js/projects/2_map.js')}}"> </script>
+
+{% endblock %}

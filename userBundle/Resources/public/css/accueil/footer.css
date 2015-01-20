@@ -1,0 +1,45 @@
+footer {
+	width:100%;
+	height:3.5em;
+	bottom:-1em;
+}
+footer.bleu {
+	background: url("../../images/barre_bleu.png") no-repeat 0 0 ; 
+	background-size: 100% 100%;
+}
+footer.vert {
+	background: url("../../images/barre_vert.png") no-repeat 0 0 ; 
+	background-size: 100% 100%;
+}
+footer.orange {
+	background: url("../../images/barre_orange.png") no-repeat 0 0; 
+	background-size: 100% 100%;
+}
+
+footer ul
+{
+    margin:0;	
+}
+ 
+footer a
+{
+	color:#fff;
+	text-decoration: none;
+}
+ 
+footer h3
+ {
+ 	margin-top:-0em;
+ }
+footer li
+{
+    width:15%;
+	padding: 0.5em 0;
+    height:2.3em;
+    float:left;
+    text-align:center;
+    overflow:hidden;
+	position:relative;
+	border-left:1px solid #fff;
+	z-index:21; 
+}

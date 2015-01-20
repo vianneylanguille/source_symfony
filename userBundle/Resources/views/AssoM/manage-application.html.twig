@@ -1,0 +1,26 @@
+{% extends "ecloreuserBundle::page_lambda.html.twig" %}
+
+{% block title %}Espace membre{% endblock %}
+
+{%set color='vert'%}
+{%set first='Mon Éclore'%}
+{%set second='Espace personnel'%}
+
+{% block content %}
+{%include "ecloreuserBundle::menu_user.html.twig"%}
+<div class="coldroite">
+
+Bienvenue {{app.user.username}} !<br>
+Vous êtes dans l'espace d'administration de la candidature de {{pa.young}} au projet {{pa.project}}.
+<br>
+Etat de la candidature: {{pa.status|PAStatus}}
+<br>Derniere communication: {{pa.message}}
+<br>
+Date de dernière modification: {{pa.statusDate|date("d/m/Y")}}
+<br>
+{% if pa.status == 'PENDING' or (pa.status=='VALIDATED' and pa.project.isFinished) %}   
+{{ form(form) }}
+{%endif%}
+</div>
+<div class="clearboth"></div>
+{% endblock %}

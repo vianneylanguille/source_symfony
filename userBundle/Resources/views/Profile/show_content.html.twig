@@ -1,0 +1,26 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<h1>  Mes informations profil</h1>
+<div class="fos_user_user_show">
+
+    <div class="colgauche"> 
+    Image de profil: 
+        <img src="{{app.request.basepath}}/{{ user.getHeadshotWebPath }}" width='100'>
+    </div>
+    <div class="coldroite">  
+    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
+    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+    <p>Téléphone: {{ user.mobile }}</p>
+    <p>Date de naissance: {{ user.birthDate|date('d/m/Y') }}</p>
+    <p>Prénom: {{ user.firstName }}</p>
+    <p>Nom: {{ user.lastName }}</p>
+    <p>Niveau de confidentialité: {{ user.privacyLevel|privacyLevels }}</p>
+    {%if app.user.hasRole('ROLE_ASSOM') or app.user.hasRole('ROLE_INSTM') or app.user.hasRole('ROLE_YOUNG')%}
+    <p>Situation : {{ user.quality }}</p>
+    {%endif%}
+    </div>
+    <div class="clearboth"></div>
+    <a href="{{ path('fos_user_profile_edit') }}">Modifier mes informations</a>
+    <br>
+    <a href="{{ path('fos_user_change_password') }}">Modifier mon mot de passe</a>
+</div>

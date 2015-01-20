@@ -1,0 +1,62 @@
+{% extends "ecloreuserBundle::page_lambda.html.twig" %}
+
+{% block title %}Rechercher un projet{% endblock %}
+
+{%set color='vert'%}
+{%set first='Mon Éclore'%}
+{%set second='Espace personnel'%}
+
+{% block content %}
+
+<h1> {{proj}} </h1>
+<div class="soustitre"> Du {{proj.startdate|date("m-d-Y")}} au {{proj.enddate|date("m-d-Y")}}. {{proj.address}} </div>
+
+<div> {{proj.description}} </div>
+<div> Responsable du projet: {%for resp in proj.responsibles%}{{resp.user|printName}} {%endfor%}</div>
+
+<div>
+{%set validated = proj.PAByStatus('VALIDATED') %}
+{%set terminated = proj.PAByStatus('TERMINATED') %}
+{%set marked = proj.PAByStatus('MARKED') %}
+{%if (is_granted("IS_AUTHENTICATED_REMEMBERED") and app.user.hasRole('ROLE_YOUNG')) or not is_granted("IS_AUTHENTICATED_REMEMBERED")%}
+        <a href="{{ path('young_apply',{'id': proj.id}) }}"> Candidater à ce projet!</a>
+{%endif%}
+{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+    {% if date(proj.enddate) < date() %}
+        Ce projet est terminé.<br>
+        {{validated|length+terminated|length+marked|length}} participants.
+        
+    {%else%}
+		</br></br>
+		{% if validated|length+terminated|length+marked|length > 0 %}
+			Jeunes inscrits à ce projet:<ul>
+				{%for part in validated%}
+				     {%if part.young.user.privacyLevel != 2%}
+					<li>{{part.young.user|printName}}</li>
+				    {%endif%}
+				{%endfor%}
+				</ul>
+			{% endif%}
+    {%endif%}
+{%else%}
+    {{validated|length}} participants enregistrés.
+{% endif %}
+<br>
+</div>
+
+
+<div class="colgauche asideleft"> 
+	<div> <img src="{{app.request.basepath}}/{{ proj.association.getHeadshotWebPath }}" width='70%'> </div>
+	<div> Projet porté par {{proj.association}} <br>
+		<a href="{{ path('displayAsso',{'id': proj.association.Getid()}) }}"> Découvrir cette association </a>
+	</div>
+ </div>
+
+<div class="coldroite" style="padding-left:4em; width:60%;">
+<h2> Action récentes liées à ce projets</h2>
+{% for action in timeline_coll %}
+    {{ timeline_render(action) }}<br>
+{% endfor %}
+</div>
+<div class="clearboth"></div>
+{% endblock %}

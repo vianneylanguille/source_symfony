@@ -1,0 +1,43 @@
+{% extends "ecloreuserBundle::page_lambda.html.twig" %}
+
+{% block title %}Rechercher un projet{% endblock %}
+
+{%set color='vert'%}
+{%set first='Mon Éclore'%}
+{%set second='Espace personnel'%}
+
+{% block content %}
+
+Nom du projet: {{proj}}<br>
+Description: {{proj.description}}<br>
+Date de début: {{proj.startdate|date("m-d-Y")}}<br>
+Date de fin: {{proj.enddate|date("m-d-Y")}}<br>
+Localisation: {{proj.address}}<br>
+{%set validated = proj.PAByStatus('VALIDATED') %}
+{%set terminated = proj.PAByStatus('TERMINATED') %}
+{%set marked = proj.PAByStatus('MARKED') %}
+{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+    {%if app.user.hasRole('ROLE_YOUNG') and not app.user.young.hasApplied(proj)%}
+        <a href="{{ path('young_apply',{'id': proj.id}) }}">Candidater à ce projet!</a>
+    {%endif%}
+    {% if date(proj.enddate) < date() %}
+        Ce projet est terminé.<br>
+        {{validated|length+terminated|length+marked|length}} participants.
+        
+    {%else%}
+        Jeunes inscrits à ce projet:<ul>
+            {%for part in validated%}
+                <li>{{part.young.user|printName}}</li>
+            {%endfor%}
+            </ul>
+    {%endif%}
+{%else%}
+    {{validated|length}} participants enregistrés.
+{% endif %}
+<br>
+{% for action in timeline_coll %}
+    {{ timeline_render(action) }}<br>
+{% endfor %}
+<br>
+{{timeline_coll|length}} actions in timeline.
+{% endblock %}

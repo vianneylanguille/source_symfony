@@ -1,0 +1,42 @@
+{% extends "ecloreuserBundle::page_lambda.html.twig" %}
+
+{% block title %}Espace membre{% endblock %}
+
+{%set color='vert'%}
+{%set first='Mon Éclore'%}
+{%set second='Espace personnel'%}
+
+{% block content %}
+{%include "ecloreuserBundle::menu_user.html.twig"%}
+<div class="coldroite home">
+    <h1> Bienvenue <span class="subject">{{app.user.username}}</span> ! </h1>
+
+Vous êtes dans votre espace membre. Vous pouvez y voir le parcours des jeunes qui appartiennent à votre établissement.  <br>
+
+
+{% for inst in instM.institutions %}
+<h2>  Jeunes membre de : {{inst|printInst}} </h2>
+    {% if inst.youngs|length > 0 %}
+        <ul>
+        {% for young in inst.youngs %}
+        <li>{{young}}, <a href="{{ path('instm_displayYoung', { 'id': young.id }) }}">Manager</a></li>
+        {% endfor %}
+        </ul>
+    
+    {% endif %}
+{% endfor %}
+
+
+<h2> Actualités récentes </h2>
+    <ul>
+    {% for action in timeline_coll %}
+        <li>{{ timeline_render(action) }}</li>
+    {% endfor %}
+    </ul>
+<br>
+{% if timeline_coll|length == 0 %}
+ Pas d'actualités.
+ {%endif%}
+</div>
+<div class="clearboth"></div>
+{% endblock %}

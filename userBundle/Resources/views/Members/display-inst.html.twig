@@ -1,0 +1,45 @@
+{% extends "ecloreuserBundle::page_lambda.html.twig" %}
+
+{% block title %}Espace membre{% endblock %}
+{%set color='vert'%}
+{%set first='Mon Éclore'%}
+{%set second='Espace personnel'%}
+
+
+{% block content %}
+
+
+	<h1>{{inst.institutionName}}</h1>
+	<div class="soustitre"> {{inst.location}} </div>
+	{{inst.description}}
+<p>
+{%if inst.youngs|length ==0 %}
+Aucun jeune n'est inscrit dans cette institution.
+{%else%}
+	Jeunes inscrits dans cette institution: 
+	<ul>
+	{%for membre in inst.youngs %}
+		{%if membre.user.privacyLevel != 2 %}
+		<li>{{membre.user|printName}}</li>
+		{%endif%}
+	{%endfor%}
+	</ul>
+{%endif%}
+</p>
+<p>
+{%if inst.members|length ==0 %}
+Aucun membre n'est inscrit dans cette institution.
+{%else%}
+	Membres de cette institution: 
+	<ul>
+	{%for membre in inst.members %}
+		{%if membre.user.privacyLevel != 2 %}
+		<li>{{membre.user|printName}}</li>
+		{%endif%}
+	{%endfor%}
+	</ul>
+{%endif%}
+</p>
+</div>
+
+{% endblock %}

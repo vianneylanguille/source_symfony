@@ -1,0 +1,27 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+
+
+{% block fos_user_content %}
+<h1> Votre inscription est presque terminée ! </h1>
+<p> Afin de profitez des possibilités du réseau Eclore, reliez votre compte à une institution ou à une association. </p>
+<div id="typeprofil">
+    <div id="choix_type_membre">
+        <label class="required" for="typemembre">Quel est votre profil ? </label>
+        <select name="fos_choix_type_membre" id="fos_choix_type_membre" >
+            <option value="-1" selected> Choisissez... </option>
+            <option value="0"> Jeune </option>
+            <option value="1"> Membre d'une institution</option>
+            <option value="2"> Membre d'association</option>
+        </select>
+    </div>
+</div>
+<div id="defprofil">   
+    {{ form(youngForm) }}
+    {{ form(instMForm) }}
+    {{ form(assoMForm) }} 
+    <a href="{{ path('create_asso') }}">Votre association n'est pas dans la liste ? Créez là !</a><br>
+    <a href="{{ path('create_inst') }}">Votre institution n'est pas dans la liste ? Créez là !</a>
+</div>
+
+{% endblock fos_user_content %}

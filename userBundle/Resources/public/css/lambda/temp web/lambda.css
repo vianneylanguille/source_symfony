@@ -1,0 +1,664 @@
+
+/*  --------------------------------------   ----------------------------------------------------------------------------------------------------- */
+/*  -------------------   CSS pour la structure générale                                            --------------------- */
+/*  --------------------------------------   ----------------------------------------------------------------------------------------------------- */
+
+html{
+font-family: "Constantia";
+height:100%;
+}
+
+body { 
+margin:0;
+padding:0;
+min-width:1000px;
+background: url("../../images/fond.png") repeat; 
+background-size : 100% 100% ;
+height:100%;
+}
+
+@font-face {
+    
+   src: url(Constantia.ttf) format("truetype");
+}
+
+
+
+
+#menuhaut
+{
+	position:absolute;
+	top:0%;
+	display:inline-block;
+	vertical-align:top;
+	height:16em;
+	width:100%;
+}
+
+#tamponmenu
+{
+	height:18em;
+	width:100%;
+}
+
+div.bandeau_haut {
+width:100%;
+height: 11em;
+overflow:hidden;
+}
+
+.bandeau_haut img {
+width : 70%;
+height: 17em;
+position:relative;
+top:-1em;
+}
+
+#fonduimg {
+width : 30%;
+height: 17em;
+position:relative;
+top:-18em;
+left: 53%;
+z-index:10;
+}
+
+.logo
+{
+	width:20%;
+	position:absolute;
+	top:2%;
+	right:1%;
+	height:15em;
+}
+
+ 
+.logo img{
+width: 90%;
+}
+ 
+    
+div.page {
+background-color:#fff;
+position:relative;
+margin: 0% auto;
+padding-bottom:5% ;
+width: 85%;
+top: 20%;
+}
+
+    div.page_chapeau {
+    position:relative;
+    }
+
+        img.chapeau {
+        width: 100%;
+        position:absolute;
+        z-index: 1;
+        }
+
+        div.chapeau_texte {
+        position:relative;
+        z-index: 2;
+        width:100%;
+        padding-left: 15px;
+        padding-top: 0.75%;
+        }
+
+        img.symbole_eclore {
+        width: 2.4%;
+        vertical-align:middle;
+        margin-right: 20px;
+        }
+
+        img.fleche_gauche {
+        width: 1%;
+        vertical-align:middle;
+        }
+
+        span.chapeau_texte {
+        color:white;
+        padding: 0 1.4em;
+		font-size:1.2em;
+        }
+        
+        span.chapeau_texte:first-letter {text-transform:uppercase;}
+
+    div.page_content {
+
+    position:relative;
+    margin-top: 3%;
+    padding: 0 3%;
+	overflow:hidden;
+    }
+
+ p {text-indent: 10px;}
+
+
+ 
+ @media screen and (min-width: 1400px) {
+	div.page {
+	padding-bottom:5% ;
+	width: 1400px;
+
+	}
+}
+@media screen and (max-width: 1400px) {
+	div.page {
+	width: 1000px;
+  }
+
+}
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+/*  --------------------------------------   ----------------------------------------------------------------------------------------------------- */
+/*  -------------------   CSS pour les pages d'actualité --------------------- */
+/*  --------------------------------------   ----------------------------------------------------------------------------------------------------- */
+.actu {
+width: 100%;
+ height:auto;
+ overflow:hidden;
+ font-size : 1.1em;
+
+ 
+}
+
+.actu  h1{
+	background: url(../../images/trait_separation_court.png) no-repeat;
+	background-size: 100% 5%;	
+	background-position : -2.5em 1.5em;
+	height:2em;
+	color: #560905;
+}
+
+.img_actu {
+ float: left ;
+ width: 50%;
+ display:inline-block;
+ max-height:200px;
+ margin-right: 2em;
+ margin-bottom : 1em;
+
+}
+.img_actu img {
+ margin:auto;
+ width: 100% ;
+}
+/*  --------------------------------------   ----------------------------------------------------------------------------------------------------- */
+/*  -------------------   CSS pour les pages de profil --------------------- */
+/*  --------------------------------------   ----------------------------------------------------------------------------------------------------- */
+.page {
+overflow:hidden;
+}
+
+#menugauche{
+	display:inline-block;
+	margin-top:1em;
+	margin-bottom:2px;
+	width:25%;
+	border: 1px solid #ccc;
+	border-radius:5px;
+	box-shadow:1px 1px 2px 2px #ccc;
+}
+
+#menugauche a{
+ display:block;
+ width:100%;
+ height:100%;
+ text-decoration: none;
+ color:black;
+}
+
+#menugauche ul {
+    list-style-type: none;
+    margin: 0px;
+	padding-left:1em ;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+}
+
+#menugauche ul:hover {
+	background-color: rgba(25,25,25,0.25)
+}
+
+
+#menugauche ul li {
+	background-image: url("../../images/profil_img.png");
+	background-size:2.3em 26em;
+    background-repeat: no-repeat;
+	padding-left:25%;
+	padding-top:0.5em;
+	height: 2em;
+	font-size:1.2em;
+}
+
+.icone_profil { background-position: left top; }
+.icone_annuaire { background-position: left 11.1%; }
+.icone_recom { background-position: left 22.2%; }
+.icone_photo { background-position: left 33.3%; }
+.icone_avis { background-position: left 44.4%; }
+.icone_jeunes  { background-position: left 55.5%; }
+.icone_projets  { background-position: left 66.6%; }
+.icone_espacemembre  { background-position: left bottom; }
+.icone_deco  { background-position: left 88.8%; }
+.icone_newprojet  { background-position: left 77.7%; }
+
+/*  Pour la rétrocompatibilité avec le site en ligne, */
+
+.menugauche_profil { background-position: left top; }
+.menugauche_annuaire { background-position: left 11.1%; }
+.menugauche_recom { background-position: left 22.2%; }
+.menugauche_photo { background-position: left 33.3%; }
+.menugauche_avis { background-position: left 44.4%; }
+.menugauche_jeunes  { background-position: left 55.5%; }
+.menugauche_projets  { background-position: left 66.6%; }
+.menugauche_espacemembre  { background-position: left bottom; }
+.menugauche_deco  { background-position: left 88.8%; }
+.menugauche_newprojet  { background-position: left 77.7%; }
+
+.menugauche_el1  { background-position: left bottom; }
+.menugauche_el5  { background-position: left bottom; }
+.menugauche_el6  { background-position: left 77.7%; }
+
+
+.coldroite {
+	display: inline-block; 
+	float: right;
+	width:70%;
+	vertical-align:top;
+}
+
+.coldroite h1 {
+background: url(../../images/trait_separation_court.png) no-repeat;
+	background-size: 100% 6px;	
+	padding-bottom:1em;
+	background-position : -2.8em 90%;
+/*	height:2em;*/
+	color: #053027;
+}
+
+
+.coldroite ul {
+    list-style-type: none;
+    margin: 0px;
+	padding-left:0em ;
+	padding-top: 0.5em;
+	padding-bottom: 1em;
+}
+
+.coldroite.home ul {
+	background: url(../../images/trait_separation_court.png) no-repeat;
+	background-size: 50% 3px;	
+	background-position : -2.8em 0%;
+}
+
+.iconeactu {
+	background-image: url("../../images/profil_img.png");
+	background-size:2em 21em;
+    background-repeat: no-repeat;
+	padding-left:2em;
+	padding-top:0.5em;
+	height:1.5em;
+	width:1em;
+	display:inline-block;
+	vertical-align:top;
+}
+
+.fos_user_user_show {
+overflow:hidden;
+}
+
+.colgauche {
+	display: inline-block; 
+	float: left;
+	width:25%;
+	vertical-align:top;
+}
+
+.coldroite.projets ul {
+	background: url(../../images/trait_separation_court.png) no-repeat;
+	background-size: 50% 3px;	
+	background-position : -2.8em 100%;
+}
+
+ div.wrapper_el_projets:hover {
+	border: 1px solid #ccc;
+	border-radius:5px;
+	box-shadow:1px 1px 2px 2px #ccc;
+
+}
+ div.wrapper_el_projets{
+	padding-left:1em;
+	padding-bottom:1em;
+	border: 1px solid #fff;
+	border-radius:5px;
+	box-shadow:1px 1px 2px 2px #fff;
+}
+
+.wrapper_el_projets a{
+	color:black;
+	text-decoration:none;
+	display:block;
+	width :100%;
+	height:100%;
+}
+
+.projet_el_liste_haut .hautgauche{
+	width:50px;
+	display:inline-block;
+	padding-right:1em;
+}
+.projet_el_liste_haut .hautgauche img{
+	width: 100%;
+}
+
+.projet_el_liste_haut .hautdroit{
+	display:inline-block;
+	max-width:80%;
+}
+.projet_el_liste_haut .hautdroit h2{
+	margin-bottom:0em;
+}
+
+.projet_el_liste_haut .hautdroit .soustitre{
+	margin-top:-0.2em;
+	color:#679C2F;
+}
+
+.projet_el_liste_bas {
+	margin-top: 1em;
+	padding-right:1em;
+	display:none;
+	
+}
+
+/*  --------------------------------------   ----------------------------------------------------------------------------------------------------- */
+/*  -------------------   CSS pour les infobulles--------------------- */
+/*  --------------------------------------   ----------------------------------------------------------------------------------------------------- */
+#infobulle {
+position:relative;
+z-index : 1 ;
+color:#fff;
+width: 25%;
+background-color: rgba(103 , 156, 47 , 1);
+background-size: 100% 100%;	
+border-radius:4px;
+}
+
+#infobulle div {
+padding-left : 10px;
+padding-right : 10px;
+z-index : 2 ;
+vertical-align:top;
+width: 80%;
+height:100%;
+}
+
+
+
+/*
+#infobulle a {
+position:relative;
+z-index : 2 ;
+display:inline-block;
+vertical-align:top;
+float:right;
+height:20px;
+width: 20px;
+background: url(../images/croix_beige.png) no-repeat;
+background-size: 20px 20px;
+background-position: 100% 0	 ;
+}
+*/
+
+
+
+/*  -------------------------------------- ---------------------------------------------------------------------------------------------------------- */
+/*  --------------------------------------   CSS pour le tableau de recherche de projets --------------------------------------------------------------------- */
+/*  --------------------------------------   ----------------------------------------------------------------------------------------------------- */
+
+#bandeau_recherche_haut select {
+
+ margin-left:1em;
+ margin-right:1em;
+ height:1.8em;
+ overflow:scroll;
+ background-color : #006666 ;
+	color: #fff;
+	border-radius : 5px;
+padding-top:0.2em;
+font-size:1em;
+box-shadow:1px 1px 2px 1px #ccc;
+padding-left:5%;
+}
+
+#label_select {
+	width: 15%;
+}
+
+#blocktrie{
+float:right;
+width:20%;
+}
+
+#trier{
+width: 59%;
+}
+
+
+
+#recherche{
+ margin-left:1em;
+ height:2em;
+ overflow:scroll;
+ background-color : #006666 ;
+color: #fff;
+ padding-top:0.2em;
+font-size:1em;
+box-shadow:1px 1px 2px 1px #ccc;
+padding-left:5%;
+width:25% ;
+}
+
+#recherche_submit {
+	width: 10%;
+	 height:3em;
+	 padding-top:0.2em;
+	 margin-left:-0.2em	;
+	 box-shadow:1px 1px 2px 1px #ccc;
+
+}
+
+#filtre_actif {
+margin-top: 1em;
+width:100%;
+height:2em;
+padding-bottom:2em;
+background: url(../../images/trait_separation_long.png) no-repeat 0 2.5em / 100% 5%;
+}
+
+#map-canvas, #results {
+display: inline-block ;
+vertical-align:top;
+}
+#results {
+width: 40%;
+}
+#map-canvas{
+width: 59%;
+}
+
+
+
+
+
+
+/*  -------------------------------------- ---------------------------------------------------------------------------------------------------------- */
+/*  --------------------------------------   CSS pour la page de présentation d'une asso --------------------------------------------------------------------- */
+/*  --------------------------------------   ----------------------------------------------------------------------------------------------------- */
+
+
+.coldroite h3 {
+color: #4D7523 ;
+}
+.coldroite h2 {
+color: #053027  ;
+}
+
+/*  679C2F*/
+
+.colgauche.display_association{
+	display:inline-block;
+	margin-top:1em;
+	margin-bottom:2px;
+	padding:1em;
+	width:23%;
+	border: 1px solid #ccc;
+	border-radius:5px;
+	box-shadow:1px 1px 2px 2px #ccc;
+}
+
+.colgauche img.logo_assos  {
+	display:block;
+	max-width: 200px;
+	max-height: 200px;
+	margin:auto;
+	margin-bottom:1em;
+}
+
+.colgauche.display_association>div{
+background: url(../../images/trait_separation_long.png) no-repeat 0 0em / 100% 2%;
+padding-top:1em;
+}
+
+.colgauche.display_association ul {
+    list-style-type: none;
+    margin: 0px;
+	padding-left:0em ;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+}
+.colgauche.display_association ul li {
+	background-image: url("../../images/display_association/icones.png");
+	background-size:2.3em 12.5em;
+    background-repeat: no-repeat;
+	padding-left:25%;
+	padding-top:0.5em;
+	height: 2em;
+}
+
+.colgauche.display_association li.adresse { background-position: left 25%; margin-bottom:2em;}
+.colgauche.display_association li.respo { background-position: left 50%; }
+.colgauche.display_association li.membres { background-position: left top; }
+.colgauche.display_association li.contact { background-position: left 75%; }
+.colgauche.display_association li.telephone { background-position: left bottom; }
+
+.coldroite.display_association ul {
+	background: url(../../images/trait_separation_court.png) no-repeat;
+	background-size: 50% 3px;	
+	background-position : -2.8em 100%;
+}
+
+
+
+/*  -------------------------------------- ---------------------------------------------------------------------------------------------------------- */
+/*  --------------------------------------   CSS pour la page d'accueil temporaire --------------------------------------------------------------------- */
+/*  --------------------------------------   ----------------------------------------------------------------------------------------------------- */
+
+#presasso {
+width : 100% ;
+height: 40% ;
+margin: auto;
+}
+
+.presasso_el {
+display : inline-block ;
+vertical-align :top;
+width: 29% ;
+margin-left: 0% ;
+margin-right: 2% ;
+height: 100% ;
+font-size:1em;
+}
+
+.presasso_el img{
+display : block ;
+margin : 5% ; 
+float :left ;
+width: 25%;
+}
+
+.lienrezo img
+{
+	width: 15% ;
+	margin:1em;
+	margin-top: 2em;
+}
+.lienrezo a
+{
+text-decoration: none;
+}
+
+
+/*  -------------------------------------- ---------------------------------------------------------------------------------------------------------- */
+/*  --------------------------------------   CSS pour les pages d'actualité --------------------------------------------------------------------- */
+/*  --------------------------------------   ----------------------------------------------------------------------------------------------------- */
+
+.soustitre{
+	display:block;
+	position:relative;
+	margin-bottom : 1em ; 
+	margin-top : -1em ;
+	color:rgb(30,30,30) ;
+	font-size:1.1em;
+	font-style: italic;
+}
+
+
+/*  -------------------------------------- ---------------------------------------------------------------------------------------------------------- */
+/*  --------------------------------------   CSS pour les pages de gestion de projet --------------------------------------------------------------------- */
+/*  --------------------------------------   ----------------------------------------------------------------------------------------------------- */
+
+.colquarter {
+display:inline-block;
+width:20%;
+min-height:13em;
+vertical-align:top;
+margin:2%;
+text-align:center;
+border: 4px solid #ccc;
+border-radius:5px;
+}
+.colhalf {
+display:inline-block;
+width:43%;
+min-height:13em;
+vertical-align:top;
+margin:2%;
+text-align:center;
+border: 4px solid #ccc;
+border-radius:5px;
+}
+
+.imgtitle {
+	background-image: url("../../images/profil_img.png");
+	height:100px;
+	width:100px;
+	margin:auto;
+	background-size:6.3em 69em;
+	margin-bottom:2em;
+	margin-top:1em;
+}
+
+.colquarter .imgtitle{
+
+}
+.colhalf .imgtitle{
+
+}

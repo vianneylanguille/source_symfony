@@ -1,0 +1,25 @@
+{% extends "ecloreuserBundle::page_lambda.html.twig" %}
+
+{% block title %}Le réseau Eclore{% endblock %}
+{%set color='orange'%}
+{%set first='Actualité'%}
+{%set second= post.title %}
+
+{% block content %}
+
+
+<div class="colgauche">
+	{%for pic in post.pictures %}
+	<img src="{{app.request.basepath}}/{{ pic.getWebPath }}" width='100%'>
+{%endfor%}			
+</div>
+
+
+<div class="coldroite">
+	<h1>  {{post.header}} </h1>
+	<span class="soustitre"> Publiée le {{post.publishDate|date("m-d-Y")}}	</span> </br>
+	{{post.text}}						
+</div>
+
+
+{% endblock %}

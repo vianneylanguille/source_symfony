@@ -1,0 +1,217 @@
+# user actions
+
+ecloreuser_registerProfile:
+    pattern:   /register-profile
+    defaults: { _controller: ecloreuserBundle:RegistrationProfile:registerProfile }
+    
+user_annuaire:
+    pattern:    /home/annuaire
+    defaults: { _controller: ecloreuserBundle:Profile:getAnnuaire }
+    
+user_recomm:
+    pattern:    /avis
+    defaults: { _controller: ecloreuserBundle:Profile:getRecommendations }
+    
+user_acknowledge_contact:
+    pattern:    /home/annuaire/acknowledge/{id}/{action}
+    defaults:   { _controller: ecloreuserBundle:Profile:acknowledgeContact }
+    requirements:
+        id:  \d+
+        action: ^(nack|ack)$   
+
+user_send_contactNot:
+    pattern:    /home/annuaire/send-demand/{id}
+    defaults:   { _controller: ecloreuserBundle:Profile:sendDemand }
+    requirements:
+        id:  \d+
+        
+user_removeContact:
+    pattern:    /home/annuaire/remove/{id}
+    defaults:   { _controller: ecloreuserBundle:Profile:removeContact }
+    requirements:
+        id:  \d+
+        
+user_albums:
+    pattern:    /home/albums
+    defaults:   {_controller: ecloreuserBundle:Profile:showAlbums}
+    
+user_createalbum:
+    pattern:    /home/albums/create
+    defaults:   {_controller: ecloreuserBundle:Profile:createAlbum}
+    
+user_removealbum:
+    pattern:    /home/albums/remove/{id}
+    defaults:   {_controller: ecloreuserBundle:Profile:removeAlbum}
+    requirements:
+        id:  \d+
+        
+user_removepic:
+    pattern:    /home/albums/remove/image/{id}
+    defaults:   {_controller: ecloreuserBundle:Profile:removePic}
+    requirements:
+        id:  \d+
+        
+# user homes   
+ 
+ecloreuser_home:
+    pattern:  /home
+    defaults: { _controller: ecloreuserBundle:Home:dispatchHome }
+    
+ecloreuser_younghome:
+    pattern:  /jeune/home
+    defaults: { _controller: ecloreuserBundle:Young:displayHome }
+    
+ecloreuser_assomhome:
+    pattern:  /association/home
+    defaults: { _controller: ecloreuserBundle:AssoM:displayHome }
+    
+ecloreuser_instmhome:
+    pattern:  /institution/home
+    defaults: { _controller: ecloreuserBundle:InstM:displayHome }
+    
+# association: project management
+    
+assom_manageProject:
+    pattern:  /association/manage-project/{id}
+    defaults: { _controller: ecloreuserBundle:AssoM:manageProject }
+    requirements:
+        id:  \d+
+        
+assom_editProject:
+    pattern:  /association/edit-project/{id}
+    defaults: { _controller: ecloreuserBundle:AssoM:editProject }
+    requirements:
+        id:  \d+
+
+assom_registerProject:
+    pattern:  /association/register-project
+    defaults: { _controller: ecloreuserBundle:AssoM:registerProject }      
+         
+assom_manageApplication:
+    pattern:  /association/manage-application/{id}
+    defaults: { _controller: ecloreuserBundle:AssoM:manageApplication }
+    requirements:
+        id:  \d+
+        
+assom_editAsso:
+    pattern:  /association/edit/{id}
+    defaults: { _controller: ecloreuserBundle:AssoM:editAsso }
+    requirements:
+        id:  \d+
+        
+assom_projects:
+    pattern:  /association/projets/
+    defaults: { _controller: FrameworkBundle:Template:template, template:'ecloreuserBundle:AssoM:projects.html.twig' }
+        
+#institution
+instm_displayYoung:
+    pattern: /institution/display-young/{id}
+    defaults: {_controller: ecloreuserBundle:InstM:displayYoung }
+    requirements:
+        id:  \d+
+
+# young
+        
+young_apply:
+    pattern:  /jeune/candidater/{id}
+    defaults: { _controller: ecloreuserBundle:Young:apply }
+    requirements:
+        id:  \d+
+        
+young_manage:
+    pattern:  /jeune/gerer-candidature/{id}
+    defaults: { _controller: ecloreuserBundle:Young:manageApplication }
+    requirements:
+        id:  \d+   
+
+young_projects:
+    pattern:  /jeune/projets/
+    defaults: { _controller: FrameworkBundle:Template:template, template:'ecloreuserBundle:Young:projects.html.twig' }
+        
+# admin
+    
+admin_page:
+    pattern:    /admin/
+    defaults:   { _controller: ecloreuserBundle:Admin:index }    
+    
+admin_validate_profile:
+    pattern:    /admin/validate-profile/{type}/{id}
+    defaults:   { _controller: ecloreuserBundle:Admin:validateProfile }
+    requirements:
+        id:  \d+
+        type: ^(InstM|AssoM)$
+
+admin_validate_project:
+    pattern:    /admin/validate-project/{id}
+    defaults:   { _controller: ecloreuserBundle:Admin:validateProject }
+    requirements:
+        id:  \d+
+
+## pages publiques
+        
+displayMember:
+    pattern:  /display-member/{id}
+    defaults: {  _controller: ecloreuserBundle:Members:displayMember}
+    requirements:
+        id:  \d+
+        
+ecloreuser_homepage:
+    pattern:  /
+    defaults: { _controller: ecloreuserBundle:Static:index }
+
+ecloreuser_leReseau:
+    pattern:  /le-reseau
+    defaults: { _controller: FrameworkBundle:Template:template, template:'ecloreuserBundle:Static:le-reseau.html.twig' }
+    
+ecloreuser_statuts:
+    pattern:  /nos-statuts
+    defaults: { _controller: FrameworkBundle:Template:template, template:'ecloreuserBundle:Static:statuts.html.twig' }
+    
+ecloreuser_contact:
+    pattern:  /contact
+    defaults: { _controller: FrameworkBundle:Template:template, template:'ecloreuserBundle:Static:en-construction.html.twig' }
+    
+ecloreuser_sitemap:
+    pattern: /plan-du-site
+    defaults: { _controller: FrameworkBundle:Template:template, template:'ecloreuserBundle:Static:sitemap.html.twig' }
+    
+ecloreuser_mentions:
+    pattern:  /mentions-legales
+    defaults: { _controller: FrameworkBundle:Template:template, template:'ecloreuserBundle:Static:en-construction.html.twig' }
+
+ecloreuser_rechercherProjet:
+    pattern:  /rechercher-un-projet
+    defaults: { _controller: ecloreuserBundle:Projects:rechercher }
+    
+create_asso:
+    pattern:  /creer-association
+    defaults: { _controller: ecloreuserBundle:Members:createAsso }
+    
+create_inst:
+    pattern:  /creer-institution
+    defaults: { _controller: ecloreuserBundle:Members:createInst }
+    
+show_project:
+    pattern:    /voir-projet/{id}
+    defaults: { _controller: ecloreuserBundle:Projects:showProject}
+    requirements:
+        id:  \d+
+        
+displayAsso:
+    pattern:  /display-association/{id}
+    defaults: {  _controller: ecloreuserBundle:Members:displayAsso}
+    requirements:
+        id:  \d+
+        
+displayNewsPost:
+    pattern:  /Actualite/{id}
+    defaults: {  _controller: ecloreuserBundle:Static:displayNewsPost}
+    requirements:
+        id:  \d+
+        
+displayInst:
+    pattern:  /display-institution/{id}
+    defaults: {  _controller: ecloreuserBundle:Members:displayInst}
+    requirements:
+        id:  \d+
+        

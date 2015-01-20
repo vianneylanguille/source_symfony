@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+
+
+
+<head>
+    <title>Le Réseau Éclore, des jeunes pour des projets associatifs</title>
+    <meta charset='utf-8' />
+	
+	<meta name="description" content="Découvrez les actions associatives pensées pour les jeunes autour de chez vous et proposez vos projets !"/>
+	<meta name="keywords" content="Réseau, Eclore, jeunes, projets, association, dialogue, gratuité, respect, apporter" />
+	<meta name="robots" content="index, follow, all" />
+	<!--[if lt IE 9]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+	<meta name="viewport" content="width=device-width" />
+
+<link rel="stylesheet" href="{{ asset('bundles/ecloreuser/css/lambda/menu.css')}}" type="text/css" />
+        <link rel="stylesheet" href="{{ asset('bundles/ecloreuser/css/accueil/accueil.css')}}" type="text/css" />
+	    <link rel="stylesheet" href="{{ asset('bundles/ecloreuser/css/accueil/footer.css')}}" type="text/css" />
+<link rel="stylesheet" href="{{ asset('bundles/ecloreuser/css/accueil/content.css')}}" type="text/css" />
+
+</head>
+
+
+
+<body>
+
+<!--    Le menu du haut, le logo et les icônes des réseaux sociaux ----------------------------------------------------------------------------------------------------------------------------->
+
+    <header>   
+	<div id="menuhaut" style="width:80%" style="z-index:100;">
+<!--	{% block menu %} {% endblock %} -->
+
+<div class="menu bleu" style='position:absolute; top : 63%;'>
+				{% include 'ecloreuserBundle::menu.html.twig' %}	
+		</div>
+			
+		<div class="lienrezo">
+			<a href="http://www.facebook.com/reseau.eclore" target="_blank"> <img  src="{{ asset('bundles/ecloreuser/images/icone_fb.png')}}" alt="Lien Facebook">  </a>
+			<a href="https://twitter.com/ResEclore" target="_blank"> <img  src="{{ asset('bundles/ecloreuser/images/icone_twitter.png')}}" alt="Lien Twitter"> </a>
+			<a href="http://reseau-eclore.tumblr.com/" target="_blank"> <img src="{{ asset('bundles/ecloreuser/images/icone_tumblr.png')}}" alt="Lien Tumblr"> </a>
+		</div>
+	</div>
+
+	</header>
+	<a href="{{path('ecloreuser_homepage')}}" id="logo">
+		<img  src="{{ asset('bundles/ecloreuser/images/logo.png')}}" alt="Logo de l'association" style="width:100%"> 
+	</a>
+	<div style='clear:both'></div>
+<!--    Le corps du site ----------------------------------------------------------------------------------------------------------------------------->
+<div id="wrapper"> 
+
+	
+	  <section id="cloud">   	
+		<div id="navarea">
+			<a id="area_projet"  href="#" title="Lien vers les projets" ></a>
+			<a id="area_reseau" href="#" title="Lien vers le réseau"></a>
+			<a id="area_eclore" href="#" title="Lien vers la présentation du réseau Éclore"></a>		
+		</div>
+			<div id="cloud_bkg"> </div>
+	 		<div class="cloud_f" id="cloud_bleu"> </div>
+			<div class="cloud_f" id="cloud_vert"> </div>
+			<div class="cloud_f" id="cloud_orange"> </div>
+   </section>
+	
+	
+	<div id="container" style="width:210px;"> 
+	
+   <section id="projet" class="content">
+   
+		<div id="banner_projet" class="banner">
+			<div class="textbanner">
+				<h1>Trouvez ou déposez un projet !</h1>
+			</div>
+		</div>
+
+
+		<article id="inscription">
+			 <h2> Rejoignez le réseau </h2>
+			 <div id="boutoninscription"> 
+             {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+			 <a href="{{ path('fos_user_registration_register') }}" > Inscrivez-vous </a> 
+			 Déjà inscrit(e) ? <a href="{{ path('fos_user_security_login') }}" > Connectez-vous </a> 
+                {%else%}
+                <a href="{{ path('ecloreuser_home') }}" "> Accédez à votre espace </a> 
+                {%endif%}
+			 </div> 
+			
+			 
+		</article>
+		<article id="recherche">
+			 <h2> Rechercher un projet</h2>
+			 <div id="boutoninscription"> 
+				<div id="rechercheprojets">
+					<a href="{{ path('ecloreuser_rechercherProjet') }}">Accéder à la zone de recherche</a>
+				</div> 
+			 </div> 
+			 
+		</article>
+		
+		<article id="derniersprojets">
+		
+			 <h2> Les derniers projets ajoutés </h2>
+			 	
+			 <div class="projetcarousel"> 
+			 			
+				<div id="projcarousel">
+				{%for proj in projs %}
+				<div class="elprojetcarousel">
+					<div class="elprojet_haut">
+						<img src="{{ asset('bundles/ecloreuser/images/projets/proj1.png')}}" alt="Image de description du projet"> </img>
+						<div> <ul> <li>{{proj.city}}</li> </ul><ul> <li>Projet de {{proj.getDuration//12}} mois</li> </ul> </div>
+						<img src="{{ asset('bundles/ecloreuser/images/separation_bleu.png')}}" alt="Image de description du projet"> </img>
+					</div>
+					<h3>{{proj.projectName}}</h3>
+					<p> {{proj.shortDescription}}</p>
+				</div>
+                {%endfor%}
+			
+				</div> 
+				<div class="clearfix"></div>
+				<a class="prev" id="carousel_prev" href="#"> <span>prev</span> </a>
+				<a class="next" id="carousel_next" href="#"><span>next</span></a>
+
+			</div>
+		</article>
+	
+	</section>
+  
+
+  	<section id="reseau" class="content">
+		<div id="banner_reseau" class="banner">
+			<div class="textbanner">
+				<h1>Découvrez la vie du réseau</h1>
+			</div>
+		</div>
+
+
+			
+		<article id="focus">
+					
+		 	<div id="foccarousel">
+				<div id="foccarousel">
+					{%for post in posts %}
+                        {%if post.pictures|length >0 %}
+                            <div class="elfoccarousel">
+                                <img src="{{app.request.basepath}}/{{ post.pictures|first.getWebPath }}" alt="Image 1 du focus"> </img>
+                                <div class="elfoccarousel_banner">{{post.title}}</div>
+                            </div>
+                        {%endif%}
+                    {%endfor%}
+				</div> 
+			</div>
+				
+			<div class="clearfix"></div>
+
+		</article>
+			
+		<article id="actualite">
+
+			 <h2> Les actualités du réseau </h2>
+			 {%for post in posts %}
+			 <div class="elactualite" id="actu1"> 
+			<img class="img_elactualite" src="{{ asset('bundles/ecloreuser/images/cadre_photo_actu.png')}}" alt="Cadre de l'image de présention de l'actualité"> </img>
+			<h3>{{post.title}}</h3>	
+			<p>{{post.header}}</p>
+				<div>
+				<a href="{{ path('displayNewsPost', {'id': post.id }) }}"> voir plus >> </a>
+				<img class="sep_elactualite" src="{{ asset('bundles/ecloreuser/images/separation_orange.png')}}" alt="Barre de séparation"> </img>
+				</div>	
+			</div>	 
+            {%endfor%}
+			 
+
+		<div class="lienrezo" style="position: relative; top:50px;">
+			<a href="http://www.facebook.com/reseau.eclore" target="_blank"> <img  src="{{ asset('bundles/ecloreuser/images/icone_fb_orange.png')}}" alt="Lien Facebook">  </a>
+			<a href="https://twitter.com/ResEclore" target="_blank"> <img  src="{{ asset('bundles/ecloreuser/images/icone_twitter_orange.png')}}" alt="Lien Twitter"> </a>
+			<a href="http://reseau-eclore.tumblr.com/" target="_blank"> <img src="{{ asset('bundles/ecloreuser/images/icone_tumblr_orange.png')}}" alt="Lien Tumblr"> </a>
+		</div>
+			 
+		</article>
+		
+		
+
+		
+		<!-- <article class="filactu">
+			 <h2> Fil Twitter</h2>
+		</article> -->
+		<article class="filactu" id="tweet" >
+		
+		</article>
+
+   </section>
+   
+
+
+    <section id="eclore" class="content">
+		<div id="banner_eclore" class="banner">
+			<div class="textbanner">
+				<h1>Le réseau Éclore veut développer l'engagement des jeunes comme acteurs du milieu associatif</h1>
+			</div>
+		</div>
+
+
+		<article id="videopres" style="color:#fff; font-size:1.5em; text-align:center;">
+			<p > Vidéo de présentation (à venir) ;) </p>
+			<img src="{{ asset('bundles/ecloreuser/images/exovo_sueur.png')}}" style="width : 15% ; display: inline;">
+		</article>
+		<article id="presasso">
+			<div class="presasso_el"> 
+				<img src="{{ asset('bundles/ecloreuser/images/exovo_etude.png')}}" alt="Mascotte d'Eclore en étudiant"> </img>
+				Nous sommes 6 jeunes autour de 25 ans, étudiants, jeunes professionnels, passés par des associations
+				variées qui nous ont fait confiance et convaincus que cela a été une chance pour notre propre parcours. 
+				Nous apportons ainsi nos différentes expériences au réseau Éclore pour partager cette chance avec tous les jeunes. 
+			</div>
+			<div class="presasso_el">
+			 <img src="{{ asset('bundles/ecloreuser/images/exovo_reseau.png')}}" alt="Mascotte d'Eclore en réseau"> </img>
+				Le réseau s’adresse à la fois aux associations qui souhaitent impliquer dans 
+				leurs projets des jeunes bénévoles, et aux jeunes souhaitant s’engager dans
+				le milieu associatif. Il vise à mettre en relation des 
+				jeunes et des projets associatifs locaux, afin de promouvoir 
+				l’engagement bénévole dans la société civile et de développer les liens entre les
+				associations et les nouvelles générations.
+			</div>
+			<div class="presasso_el"> 
+			<img src="{{ asset('bundles/ecloreuser/images/exovo_cote.png')}}" alt="Mascotte d'Eclore de coté"> </img>
+			Toute association engagée dans un projet vers les autres, de même que 
+			tout jeune désireux de s’engager dans un tel projet, peut s’inscrire 
+			au réseau Éclore, si elle ou il adhère à la charte et aux valeurs du 
+			réseau.
+			</div>
+		</article>
+   </section>
+
+   
+   
+   <section class="descriptions">   
+		<div class="descr mod bleu" >	
+			<div class="textedescr">
+				
+			</div>
+		</div>
+		<div class="descr bleu" >	
+			<div class="textedescr">
+				
+			</div>
+		</div>
+		<div class="descr orange" >		
+			<div class="textedescr">
+				
+			</div>
+		</div>
+		<div class="descr vert" >	
+			<div class="textedescr">
+				
+			</div>
+		</div>
+	</section>
+	
+	<section class="onglets">   
+		<a href="#" class="onglet bleu" >		
+		</a>
+		<a href="#" class="onglet orange" >		
+		</a>
+		<a href="#" class="onglet vert" >	
+		</a>
+	</section>
+	
+ 
+   
+   </div>
+   
+   
+   
+</div>
+   
+	<footer class="bleu" style=''>
+		<a href="https://plus.google.com/u/0/108771494758848918220?
+		rel=author" style="display:hidden;"></a>
+		
+			<ul>
+					<li> <h3> <a href="{{ path('ecloreuser_sitemap') }}"> Plan du site </a> </h3> 		
+					<li> <h3><a href="{{ path('ecloreuser_mentions') }}">Mention légales</a>  </h3>					 
+					</li>
+					<li> <h3> <a href="{{ path('ecloreuser_statuts') }}">Nos statuts</a>   </h3>					
+					</li>
+			        <li><h3> <a href="mailto:reseau.eclore@gmail.com?subject=Contact">Nous contacter</a>  </h3>				
+					</li>
+				</ul>			
+	</footer>
+
+<script src="{{ asset('bundles/ecloreuser/js/lambda/jquery.min.js')}}"> </script>
+        <script src="{{ asset('bundles/ecloreuser/js/lambda/jquery.easing.min.js')}}"> </script>
+        <script src="{{ asset('bundles/ecloreuser/js/lambda/jquery.carouFredSel-6.2.1-packed.js')}}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/ecloreuser/js/accueil/anim.js')}}"> </script>
+        <script src="{{ asset('bundles/ecloreuser/js/lambda/anim_menu.js')}}"> </script>
+		<script src="{{ asset('bundles/ecloreuser/js/accueil/tweecool.min.js')}}"> </script>
+</body>
+</html>
