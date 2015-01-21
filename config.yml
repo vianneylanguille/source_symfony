@@ -109,7 +109,6 @@ fos_user:
     user_class: eclore\userBundle\Entity\User
     service:
         mailer: fos_user.mailer.twig_swift
-        user_provider : fos_user.user_provider.username
     from_email:
             address:        contact@reseau-eclore.org
             sender_name:    "Réseau Eclore"

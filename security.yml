@@ -2,7 +2,6 @@ security:
     encoders:
         Symfony\Component\Security\Core\User\User: sha512
         eclore\userBundle\Entity\User: sha512
-        FOS\UserBundle\Model\UserInterface: sha512
 
     role_hierarchy:
         ROLE_USER:        [ROLE_USER]
@@ -14,8 +13,8 @@ security:
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
-        fos_userbundle:
-            id: fos_user.user_provider.username
+        main:
+            entity: { class: eclore\userBundle\Entity\User, property: username }
 
     firewalls:
         dev:
@@ -25,7 +24,7 @@ security:
         main:
             pattern:   ^/
             anonymous: true
-            provider:  fos_userbundle
+            provider:  main
             form_login:
                 login_path: fos_user_security_login
                 check_path: fos_user_security_check
